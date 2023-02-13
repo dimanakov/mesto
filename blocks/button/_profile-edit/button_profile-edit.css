@@ -1,9 +1,8 @@
-.profile__user-edit {
-  display: inline-block;
+.button_profile-edit {
   background-image: url('../../../images/profile__edit.svg');
   background-repeat: no-repeat;
-  background-position: contain;
-  margin-left: 18px;
+  background-color: transparent;
+  background-size: contain;
   width: 24px;
   height: 24px;
 }

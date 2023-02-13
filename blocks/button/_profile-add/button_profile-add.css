@@ -1,0 +1,9 @@
+.button_profile-add {
+  margin-left: auto;
+  background-image: url('../../../images/profile__add.svg');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  width: 150px;
+  height: 50px;
+}

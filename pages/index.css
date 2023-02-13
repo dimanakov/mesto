@@ -5,19 +5,20 @@
 /* add global styles */
 @import url('../blocks/page/page.css');
 @import url('../blocks/page/__content/page__content.css');
+@import url('../blocks/page/__content/_narrow/page__content_narrow.css');
 /* header */
 @import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
 /* profile */
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/title/title.css');
+@import url('../blocks/profile/__title/profile__title.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
-@import url('../blocks/profile/__user/profile__user.css');
-@import url('../blocks/profile/__user-edit/profile__user-edit.css');
-@import url('../blocks/profile/__name/profile__name.css');
-@import url('../blocks/profile/__profession/profile__profession.css');
 @import url('../blocks/button/button.css');
-@import url('../blocks/profile/__add/profile__add.css');
-@import url('../blocks/profile/__add-icon/prorfile__add-icon.css');
+@import url('../blocks/button/_profile-edit/button_profile-edit.css');
+@import url('../blocks/profile/__profession/profile__profession.css');
+@import url('../blocks/button/_profile-add/button_profile-add.css');
 /* elements */
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/elements/__gallery/elements__gallery.css');
