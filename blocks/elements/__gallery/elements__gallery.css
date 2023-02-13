@@ -1,5 +1,6 @@
 .elements__gallery {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   column-gap: 17px;
   row-gap: 20px;

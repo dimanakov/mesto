@@ -1,0 +1,9 @@
+.profile__user-edit {
+  display: inline-block;
+  background-image: url('../../../images/profile__edit.svg');
+  background-repeat: no-repeat;
+  background-position: contain;
+  margin-left: 18px;
+  width: 24px;
+  height: 24px;
+}
