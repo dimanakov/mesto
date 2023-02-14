@@ -1,0 +1,11 @@
+.button_elements-like {
+  background-image: url('../../../images/elements-like.svg');
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  max-width: 22px;
+  width: 100%;
+  height: 19px;
+  border: none;
+}

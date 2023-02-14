@@ -1,5 +1,6 @@
 .elements__image {
   display: block;
+  width: 100%;
   max-width: 282px;
   max-height: 282px;
   object-fit: contain;

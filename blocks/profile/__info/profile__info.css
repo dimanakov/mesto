@@ -4,5 +4,13 @@
   flex-wrap: wrap;
   align-items: baseline;
   column-gap: 18px;
-  row-gap: 16px;
+  row-gap: 8px;
+}
+
+@media (max-width: 920px) {
+  .profile__info {
+    margin-top: 26px;
+    justify-content: center;
+    column-gap: 10px;
+  }
 }
