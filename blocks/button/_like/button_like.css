@@ -1,4 +1,4 @@
-.button_elements-like {
+.button_like {
   background-image: url('../../../images/elements-like.svg');
   background-position: center;
   background-size: contain;
@@ -8,4 +8,8 @@
   width: 100%;
   height: 19px;
   border: none;
+}
+
+.button_like:hover {
+  opacity: .5;
 }

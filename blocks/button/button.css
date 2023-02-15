@@ -1,4 +1,9 @@
 .button {
   border: 1px solid #fff;
   padding: 0;
+  cursor: url('../../images/cursorPointer.svg') 12 0, pointer;
+}
+
+.button:hover {
+  opacity: .6;
 }

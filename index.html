@@ -23,7 +23,7 @@
            src="./images/kusto.jpg"
            alt="фотография пользователя">
       <div class="profile__info">
-        <h1 class="title profile__title">Жак-Ив Кусто</h1>
+        <h1 class="title title_name">Жак-Ив Кусто</h1>
         <button class="button button_profile-edit"
                 type="button"
                 aria-label="редактировать профиль"></button>
@@ -41,8 +41,8 @@
                alt="Карачаевск"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Карачаевск</h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Карачаевск</h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -52,8 +52,8 @@
                alt="Эльбрус"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Гора Эльбрус</h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Гора Эльбрус</h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -63,8 +63,8 @@
                alt="Домбай"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Домбай</h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Домбай</h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -74,8 +74,8 @@
                alt="Эльбрус"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Гора Эльбрус</h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Гора Эльбрус</h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -85,8 +85,8 @@
                alt="Домбай"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Домбай</h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Домбай</h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -96,9 +96,8 @@
                alt="Карачаевск"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title elements__title">Длинное название элемента
-            </h2>
-            <button class="button button_elements-like"
+            <h2 class="title title_inner">Длинное название элемента </h2>
+            <button class="button button_like"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -109,5 +108,30 @@
   <footer class="footer page__content page__content_narrow">
     <p class="text text_footer">&copy; 2023 Mesto Russia</p>
   </footer>
+  <div class="popup popup_hidden">
+    <form class="popup__profile-form"
+          aria-label="Заполните профиль">
+      <h2 class="title title_popup">Редактировать профиль</h2>
+      <fieldset class="popup__profile-info">
+        <input class="text text_input"
+               type="text"
+               name="profileName"
+               placeholder="Жак-Ив Кусто"
+               aria-label="Имя"
+               autocomplete="off">
+        <input class="text text_input"
+               type="text"
+               name="profileProfession"
+               placeholder="Исследователь океана"
+               aria-label="Профессия"
+               autocomplete="off">
+      </fieldset>
+      <button type="submit"
+              class="button button_submit text">Сохранить</button>
+    </form>
+    <button type="button"
+            class="button button_close"
+            aria-label="закрыть"></button>
+  </div>
 </body>
 </html>

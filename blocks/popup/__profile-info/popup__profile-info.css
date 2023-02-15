@@ -1,0 +1,14 @@
+.popup__profile-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin: 50px auto 48px;
+  border: none;
+  padding: 0;
+}
+
+@media (max-width: 920px) {
+  .popup__profile-info {
+    margin: 75px auto 45px;
+  }
+}
