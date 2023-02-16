@@ -33,6 +33,7 @@
 /* popupProfileEdit */
 /* @import url('../blocks/popup/_hidden/popup_hidden.css'); */
 @import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__container/popup__container.css');
 @import url('../blocks/popup/__profile-form/popup__profile-form.css');
 @import url('../blocks/popup/__profile-info/popup__profile-info.css');
 @import url('../blocks/title/_popup/title_popup.css');

@@ -1,8 +1,15 @@
 .button_submit {
   width: 100%;
+  margin-bottom: 37px;
   padding: 14px;
   background-color: #000;
   color: #fff;
   border: none;
   border-radius: 2px;
+}
+
+@media (max-width: 920px) {
+  .button_submit {
+    margin-bottom: 25px;
+  }
 }

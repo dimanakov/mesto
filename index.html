@@ -109,29 +109,31 @@
     <p class="text text_footer">&copy; 2023 Mesto Russia</p>
   </footer>
   <div class="popup popup_hidden">
-    <form class="popup__profile-form"
-          aria-label="Заполните профиль">
-      <h2 class="title title_popup">Редактировать профиль</h2>
-      <fieldset class="popup__profile-info">
-        <input class="text text_input"
-               type="text"
-               name="profileName"
-               placeholder="Жак-Ив Кусто"
-               aria-label="Имя"
-               autocomplete="off">
-        <input class="text text_input"
-               type="text"
-               name="profileProfession"
-               placeholder="Исследователь океана"
-               aria-label="Профессия"
-               autocomplete="off">
-      </fieldset>
-      <button type="submit"
-              class="button button_submit text">Сохранить</button>
-    </form>
-    <button type="button"
-            class="button button_close"
-            aria-label="закрыть"></button>
+    <div class="popup__container">
+      <form class="popup__profile-form"
+            aria-label="Заполните профиль">
+        <h2 class="title title_popup">Редактировать профиль</h2>
+        <fieldset class="popup__profile-info">
+          <input class="text text_input"
+                 type="text"
+                 name="profileName"
+                 placeholder="Жак-Ив Кусто"
+                 aria-label="Имя"
+                 autocomplete="off">
+          <input class="text text_input"
+                 type="text"
+                 name="profileProfession"
+                 placeholder="Исследователь океана"
+                 aria-label="Профессия"
+                 autocomplete="off">
+        </fieldset>
+        <button type="submit"
+                class="button button_submit text">Сохранить</button>
+      </form>
+      <button type="button"
+              class="button button_close"
+              aria-label="закрыть"></button>
+    </div>
   </div>
 </body>
 </html>
