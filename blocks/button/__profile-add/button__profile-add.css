@@ -1,4 +1,4 @@
-.button_profile-add {
+.button__profile-add {
   margin-left: auto;
   background-image: url('../../../images/profile-add.svg');
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
 }
 
 @media (max-width: 920px) {
-  .button_profile-add {
+  .button__profile-add {
     background-size: 16px;
     margin-top: 33px;
     margin-left: 0;

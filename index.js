@@ -1,10 +1,10 @@
 let popup = document.querySelector('.popup');
-let profileEditButton = document.querySelector('.button_profile-edit');
-let closeButton = document.querySelector('.button_close');
+let profileEditButton = document.querySelector('.button__profile-edit');
+let closeButton = document.querySelector('.button__close');
 
 // имя и профессия на странице
-let profileName = document.querySelector('.profile__name');
-let profileProfession = document.querySelector('.profile__profession');
+let profileName = document.querySelector('.title_name');
+let profileProfession = document.querySelector('.text_profession');
 
 // имя и профессия в <input> popup
 let profileNameForm = document.querySelector('.profileNameForm')
@@ -22,7 +22,7 @@ function closeButtonEvent(){popup.classList.toggle('popup_hidden')}
 closeButton.addEventListener('click', closeButtonEvent);
 
 // кнопка сохранить изменения в профиле
-let buttonSubmit = document.querySelector('.button_submit');
+let buttonSubmit = document.querySelector('.button__submit');
 
 // сохранить данные из формы на странице
 function handleFormSubmit(evt) {
