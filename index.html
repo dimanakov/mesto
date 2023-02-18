@@ -24,14 +24,14 @@
            alt="фотография пользователя">
       <div class="profile__info">
         <div class="profile__group">
-          <h1 class="title title_name">Жак-Ив Кусто</h1>
-          <button class="button button__profile-edit"
+          <h1 class="heading profile__name">Жак-Ив Кусто</h1>
+          <button class="button profile__edit-button"
                   type="button"
                   aria-label="редактировать профиль"></button>
         </div>
-        <p class="text text_profession">Исследователь океана</p>
+        <p class="text profile__profession">Исследователь океана</p>
       </div>
-      <button class="button button__profile-add"
+      <button class="button profile__add-button"
               type="button"
               aria-label="добавить место в галерею"></button>
     </section>
@@ -43,8 +43,8 @@
                alt="Кропоткин"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Кропоткин</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Кропоткин</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -54,8 +54,8 @@
                alt="Минеральные воды"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Минеральные воды</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Минеральные воды</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -65,8 +65,8 @@
                alt="Домбай"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Домбай</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Домбай</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -76,8 +76,8 @@
                alt="Ростов-на-Дону"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Ростов-на-Дону</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Ростов-на-Дону</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -87,8 +87,8 @@
                alt="Тихорецк"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Тихорецк</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Тихорецк</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -98,8 +98,8 @@
                alt="Москва"
                class="elements__image">
           <div class="elements__group">
-            <h2 class="title title_gallery">Московская Москва</h2>
-            <button class="button button__like"
+            <h2 class="heading elements__heading">Москва</h2>
+            <button class="button elements__like-button"
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
@@ -108,30 +108,30 @@
     </section>
   </main>
   <footer class="footer page__content page__content_narrow">
-    <p class="text text_footer">&copy; 2023 Mesto Russia</p>
+    <p class="text footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
   <div class="popup popup_hidden">
     <div class="popup__container">
       <form class="popup__profile-form"
             aria-label="Заполните профиль">
-        <h2 class="title title_popup">Редактировать профиль</h2>
+        <h2 class="heading popup__title">Редактировать профиль</h2>
         <fieldset class="popup__profile-info">
-          <input class="text text_input profileNameForm"
+          <input class="text popup__text profileNameForm"
                  type="text"
                  name="profileNameForm"
                  aria-label="Имя"
                  autocomplete="off">
-          <input class="text text_input profileProfessionForm"
+          <input class="text popup__text profileProfessionForm"
                  type="text"
                  name="profileProfessionForm"
                  aria-label="Профессия"
                  autocomplete="off">
         </fieldset>
         <button type="submit"
-                class="button button__submit text">Сохранить</button>
+                class="button popup__submit-button text">Сохранить</button>
       </form>
       <button type="button"
-              class="button button__close"
+              class="button popup__close-button"
               aria-label="закрыть"></button>
     </div>
   </div>

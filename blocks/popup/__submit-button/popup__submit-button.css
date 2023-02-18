@@ -1,4 +1,4 @@
-.button__submit {
+.popup__submit-button {
   width: 100%;
   margin-bottom: 37px;
   padding: 14px;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 920px) {
-  .button__submit {
+  .popup__submit-button {
     margin-bottom: 25px;
   }
 }
