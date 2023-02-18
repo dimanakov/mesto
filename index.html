@@ -9,6 +9,8 @@
   <link rel="stylesheet"
         href="./pages/index.css">
   <title>Mesto Russia</title>
+  <script src="./index.js"
+          defer></script>
 </head>
 <body class="page">
   <header class="header page__content">
@@ -23,11 +25,13 @@
            src="./images/kusto.jpg"
            alt="фотография пользователя">
       <div class="profile__info">
-        <h1 class="title title_name">Жак-Ив Кусто</h1>
-        <button class="button button_profile-edit"
-                type="button"
-                aria-label="редактировать профиль"></button>
-        <p class="text profile-profession">Исследователь океана</p>
+        <div class="profile__group">
+          <h1 class="title title_name profile__name">Жак-Ив Кусто</h1>
+          <button class="button button_profile-edit"
+                  type="button"
+                  aria-label="редактировать профиль"></button>
+        </div>
+        <p class="text profile__profession">Исследователь океана</p>
       </div>
       <button class="button button_profile-add"
               type="button"
@@ -114,13 +118,13 @@
             aria-label="Заполните профиль">
         <h2 class="title title_popup">Редактировать профиль</h2>
         <fieldset class="popup__profile-info">
-          <input class="text text_input"
+          <input class="text text_input profileNameForm"
                  type="text"
                  name="profileName"
                  placeholder="Жак-Ив Кусто"
                  aria-label="Имя"
                  autocomplete="off">
-          <input class="text text_input"
+          <input class="text text_input profileProfessionForm"
                  type="text"
                  name="profileProfession"
                  placeholder="Исследователь океана"

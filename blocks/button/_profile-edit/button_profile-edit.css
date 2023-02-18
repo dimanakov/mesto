@@ -4,6 +4,7 @@
   background-color: transparent;
   background-size: 10px;
   background-position: center;
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
 }
