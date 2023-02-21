@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet"
         href="./pages/index.css">
-  <title>Mesto Russia</title>
+  <title>Место Россия</title>
 </head>
 <body class="page">
   <header class="header page__content">
@@ -25,13 +25,13 @@
       <div class="profile__info">
         <div class="profile__group">
           <h1 class="heading profile__name">Жак-Ив Кусто</h1>
-          <button class="button profile__edit-button"
+          <button class="button button_focus profile__edit-button"
                   type="button"
                   aria-label="редактировать профиль"></button>
         </div>
         <p class="text profile__profession">Исследователь океана</p>
       </div>
-      <button class="button profile__add-button"
+      <button class="button button_focus profile__add-button"
               type="button"
               aria-label="добавить место в галерею"></button>
     </section>
@@ -110,28 +110,31 @@
   <footer class="footer page__content page__content_narrow">
     <p class="text footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
-  <div class="popup popup_hidden">
+  <div class="popup">
     <div class="popup__container">
-      <form class="popup__profile-form"
+      <form class="profile-form"
+            name="profile-form"
             aria-label="Заполните профиль">
-        <h2 class="heading popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__profile-info">
-          <input class="text popup__text profileNameForm"
+        <h2 class="heading profile-form__title">Редактировать профиль</h2>
+        <fieldset class="profile-form__info">
+          <input class="profile-form__item profile-form__item_el_name"
                  type="text"
-                 name="profileNameForm"
+                 name="name"
                  aria-label="Имя"
+                 placeholder="Иван Иванов"
                  autocomplete="off">
-          <input class="text popup__text profileProfessionForm"
+          <input class="profile-form__item profile-form__item_el_profession"
                  type="text"
-                 name="profileProfessionForm"
+                 name="profession"
                  aria-label="Профессия"
+                 placeholder="Строитель кораблей"
                  autocomplete="off">
         </fieldset>
         <button type="submit"
                 class="button popup__submit-button text">Сохранить</button>
       </form>
       <button type="button"
-              class="button popup__close-button"
+              class="button button_focus popup__close-button"
               aria-label="закрыть"></button>
     </div>
   </div>

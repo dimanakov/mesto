@@ -1,4 +1,4 @@
-.popup__profile-info {
+.profile-form__info {
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 920px) {
-  .popup__profile-info {
+  .profile-form__info {
     margin: 75px auto 45px;
   }
 }

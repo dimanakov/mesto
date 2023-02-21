@@ -1,4 +1,4 @@
-.popup__title {
+.profile-form__title {
   margin-top: 30px;
   color: #000;
   font-weight: 900;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 920px) {
-  .popup__title {
+  .profile-form__title {
     margin-top: 25px;
     font-size: 18px;
     line-height: 21.78px;

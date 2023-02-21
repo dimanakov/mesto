@@ -2,7 +2,7 @@
   width: 100%;
   margin-bottom: 37px;
   padding: 14px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 1);
   color: #fff;
   border: none;
   border-radius: 2px;
@@ -12,4 +12,8 @@
   .popup__submit-button {
     margin-bottom: 25px;
   }
+}
+
+.popup__submit-button:hover {
+  background-color: rgba(0, 0, 0, .8);
 }

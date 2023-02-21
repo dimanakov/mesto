@@ -18,6 +18,7 @@
 @import url('../blocks/profile/__profession/profile__profession.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/button/button.css');
+@import url('../blocks/button/_focus/button_focus.css');
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
 @import url('../blocks/text/text.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
@@ -28,18 +29,19 @@
 @import url('../blocks/elements/__image/elements__image.css');
 @import url('../blocks/elements/__group/elements__group.css');
 @import url('../blocks/elements/__heading/elements__heading.css');
-@import url('../blocks/elements/__like/elements__like-button.css');
-@import url('../blocks/elements/__like/_active/elements__like-button_active.css');
+@import url('../blocks/elements/__like-button/elements__like-button.css');
+@import url('../blocks/elements/__like-button/_active/elements__like-button_active.css');
 /* footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
-/* popupProfileEdit */
+/* popup */
 @import url('../blocks/popup/popup.css');
-@import url('../blocks/popup/_hidden/popup_hidden.css');
+@import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__container/popup__container.css');
-@import url('../blocks/popup/__profile-form/popup__profile-form.css');
-@import url('../blocks/popup/__profile-info/popup__profile-info.css');
-@import url('../blocks/popup/__title/popup__title.css');
-@import url('../blocks/popup/__text/popup__text.css');
-@import url('../blocks/popup/__submit-button/popup__submit-button.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
+@import url('../blocks/popup/__submit-button/popup__submit-button.css');
+/* profile-form */
+@import url('../blocks/profile-form/profile-form.css');
+@import url('../blocks/profile-form/__info/profile-form__info.css');
+@import url('../blocks/profile-form/__title/profile-form__title.css');
+@import url('../blocks/profile-form/__item/profile-form__item.css');

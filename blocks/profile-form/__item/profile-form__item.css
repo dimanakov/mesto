@@ -1,0 +1,11 @@
+.profile-form__item {
+  padding: 0 0 9px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  margin: 0;
+  font-size: 14px;
+  line-height: 16.94px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

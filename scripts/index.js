@@ -1,35 +1,34 @@
 let popup = document.querySelector('.popup');
-let profileEditButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelector('.popup__close-button');
-
+let profileForm = document.querySelector('.profile-form');
 // имя и профессия на странице
 let profileName = document.querySelector('.profile__name');
 let profileProfession = document.querySelector('.profile__profession');
+// имя и профессия в profile-form
+let formName = document.querySelector('.profile-form__item_el_name')
+let formProfession = document.querySelector('.profile-form__item_el_profession');
 
-// имя и профессия в <input> popup
-let profileNameForm = document.querySelector('.profileNameForm')
-let profileProfessionForm = document.querySelector('.profileProfessionForm');
+// кнопки
+let profileEditButton = document.querySelector('.profile__edit-button');
+let closeButton = document.querySelector('.popup__close-button');
 
-// открыть popup по нажатию на кнопку edit
+// открыть popup при нажатии кнопки edit
 profileEditButton.addEventListener('click', function () {
-  popup.classList.toggle('popup_hidden');
+  popup.classList.toggle('popup_opened');
   // перенести данные со страницы в форму
-  profileNameForm.value = profileName.textContent;
-  profileProfessionForm.value = profileProfession.textContent});
+  formName.value = profileName.textContent; // all <input> have property .value
+  formProfession.value = profileProfession.textContent}); // to read entered text
 
 // закрыть popup без сохранения
-function closeButtonEvent(){popup.classList.toggle('popup_hidden')}
+function closeButtonEvent(){
+  popup.classList.toggle('popup_opened')
+  }
 closeButton.addEventListener('click', closeButtonEvent);
-
-// кнопка сохранить изменения в профиле
-let buttonSubmit = document.querySelector('.popup__submit-button');
 
 // сохранить данные из формы на странице
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = profileNameForm.value;
-  profileProfession.textContent = profileProfessionForm.value;
-  closeButtonEvent();}
-
-// сохранить popup редактирование профиля
-buttonSubmit.addEventListener('click', handleFormSubmit);
+  profileName.textContent = formName.value;
+  profileProfession.textContent = formProfession.value;
+  closeButtonEvent();
+  }
+profileForm.addEventListener('submit', handleFormSubmit);
