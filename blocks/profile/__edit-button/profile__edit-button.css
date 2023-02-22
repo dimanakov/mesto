@@ -8,6 +8,7 @@
   width: 24px;
   height: 24px;
   margin-top: 16px;
+  border: 1px solid #fff;
 }
 
 @media (max-width: 920px) {
