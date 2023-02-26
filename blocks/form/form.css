@@ -1,11 +1,11 @@
-.profile-form {
+.form {
   width: 358px;
   margin: 0 36px;
   border: none;
 }
 
 @media (max-width: 920px) {
-  .profile-form {
+  .form {
     width: 238px;
     margin: 0 22px;
   }

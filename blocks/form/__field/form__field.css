@@ -1,4 +1,4 @@
-.profile-form__info {
+.form__field {
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 920px) {
-  .profile-form__info {
+  .form__field {
     margin: 75px auto 45px;
   }
 }

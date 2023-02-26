@@ -110,20 +110,21 @@
   <footer class="footer page__content page__content_narrow">
     <p class="text footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <!-- popup profile -->
+  <div class="popup popup_profile">
     <div class="popup__container">
-      <form class="profile-form"
-            name="profile-form"
+      <form class="form form_profile"
+            name="form-profile"
             aria-label="Заполните профиль">
-        <h2 class="heading profile-form__title">Редактировать профиль</h2>
-        <fieldset class="profile-form__info">
-          <input class="profile-form__item profile-form__item_el_name"
+        <h2 class="heading form__heading">Редактировать профиль</h2>
+        <fieldset class="form__field form__field_profile-info">
+          <input class="form__item form__item_el_name"
                  type="text"
                  name="name"
                  aria-label="Имя"
                  placeholder="Иван Иванов"
                  autocomplete="off">
-          <input class="profile-form__item profile-form__item_el_profession"
+          <input class="form__item form__item_el_profession"
                  type="text"
                  name="profession"
                  aria-label="Профессия"
@@ -131,13 +132,55 @@
                  autocomplete="off">
         </fieldset>
         <button type="submit"
-                class="button popup__submit-button text">Сохранить</button>
+                class="button form__submit-button text">Сохранить</button>
       </form>
       <button type="button"
               class="button button_focus popup__close-button"
               aria-label="закрыть"></button>
     </div>
   </div>
+  <!-- popup - elements -->
+  <div class="popup popup_elements">
+    <div class="popup__container">
+      <form class="form form_elements"
+            name="form-elements"
+            aria-label="Создание карточки">
+        <h2 class="heading form__heading">Новое место</h2>
+        <fieldset class="form__field form__field_profile-info">
+          <input class="form__item form__item_el_heading"
+                 type="text"
+                 name="heading"
+                 aria-label="Название"
+                 placeholder="Название"
+                 autocomplete="off">
+          <input class="form__item form__item_el_image"
+                 type="text"
+                 name="image"
+                 aria-label="Ссылка на картинку"
+                 placeholder="Ссылка на картинку"
+                 autocomplete="off">
+        </fieldset>
+        <button type="submit"
+                class="button form__submit-button text">Создать</button>
+      </form>
+      <button type="button"
+              class="button button_focus popup__close-button"
+              aria-label="закрыть"></button>
+    </div>
+  </div>
+  <!-- template - добавить карточку -->
+  <template class="card-template">
+    <li class="elements__item">
+      <img class="elements__image">
+      <div class="elements__group">
+        <h2 class="heading elements__heading"></h2>
+        <button class="button elements__like-button"
+                type="button"
+                aria-label="отметить: нравится"></button>
+      </div>
+    </li>
+  </template>
+  <!-- scripts -->
   <script src="./scripts/index.js"></script>
 </body>
 </html>
