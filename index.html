@@ -38,7 +38,7 @@
     <section class="elements page__content page__content_narrow"
              aria-label="галерея посещённых мест]">
       <ul class="elements__gallery">
-        <li class="elements__item">
+        <!-- <li class="elements__item">
           <img src="./images/elements__kropotkin.jpg"
                alt="Кропоткин"
                class="elements__image">
@@ -103,7 +103,7 @@
                     type="button"
                     aria-label="отметить: нравится"></button>
           </div>
-        </li>
+        </li> -->
       </ul>
     </section>
   </main>
@@ -111,7 +111,7 @@
     <p class="text footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
   <!-- popup profile -->
-  <div class="popup popup_profile">
+  <div class="popup popup_form popup_profile">
     <div class="popup__container">
       <form class="form form_profile"
             name="form-profile"
@@ -140,7 +140,7 @@
     </div>
   </div>
   <!-- popup - elements -->
-  <div class="popup popup_elements">
+  <div class="popup popup_form popup_elements">
     <div class="popup__container">
       <form class="form form_elements"
             name="form-elements"
@@ -168,10 +168,26 @@
               aria-label="закрыть"></button>
     </div>
   </div>
+  <!-- popup увеличенная фотография -->
+  <div class="popup popup_scale-image">
+    <div class="popup__image-container">
+      <figure class="scale-image">
+        <img class="scale-image__image"
+             src="#"
+             alt="#">
+        <figcaption class="scale-image__figcaption"></figcaption>
+      </figure>
+      <button type="button"
+              class="button button_focus popup__close-button"
+              aria-label="закрыть"></button>
+    </div>
+  </div>
   <!-- template - добавить карточку -->
   <template class="card-template">
     <li class="elements__item">
-      <img class="elements__image">
+      <img class="elements__image"
+           src="#"
+           alt="#">
       <div class="elements__group">
         <h2 class="heading elements__heading"></h2>
         <button class="button elements__like-button"
