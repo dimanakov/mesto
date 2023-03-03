@@ -17,7 +17,7 @@ const cards = [
   },
   {
     name: 'Минеральные воды',
-    link: '../images/elements__min-vodi.jpg'
+    link: './images/elements__min-vodi.jpg'
   },
   {
     name: 'Байкал',
