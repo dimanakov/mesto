@@ -38,14 +38,15 @@ const elementsGallery = document.querySelector('.elements__gallery');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 // поля form
-const profileFormName = document.querySelector('.form__item_el_name');
-const profileFormProfession = document.querySelector('.form__item_el_profession');
-const cardFormHeading = document.querySelector('.form__item_el_heading');
-const cardFormLink = document.querySelector('.form__item_el_image');
+const profileFormName = document.querySelector('.form__input_el_name');
+const profileFormProfession = document.querySelector('.form__input_el_profession');
+const cardFormHeading = document.querySelector('.form__input_el_heading');
+const cardFormLink = document.querySelector('.form__input_el_image');
 // кнопки
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
+const submitNewCard = cardForm.querySelector('.form__submit');
 // image
 const openedImage = document.querySelector('.scale-image__image');
 const figcaption = document.querySelector('.scale-image__figcaption');
@@ -53,8 +54,10 @@ const figcaption = document.querySelector('.scale-image__figcaption');
 ////////////////////////////////////////////////////////////////////////////////////
 
 // открыть popup
-function openPopup(evt) {
-  evt.classList.add('popup_opened');
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_opened');
+  closeModal(popupElement);
+  setEscapeListener(popupElement);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -139,6 +142,7 @@ function addNewCard(heading, link) {
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   addNewCard(cardFormHeading.value, cardFormLink.value);
+  submitButtonInactivate(submitNewCard);
   cardForm.reset();
   closePopup(cardPopup);
 };
@@ -154,8 +158,28 @@ closeButtons.forEach(function (button) {
   const popup = button.closest('.popup');
   button.addEventListener('click', function () {
     closePopup(popup)
-  });
+  })
 });
+
+function closeModal(popup) {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
+  })
+};
+
+function escapeFromPopup(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+    document.removeEventListener('keydown', escapeFromPopup);
+  }
+};
+
+function setEscapeListener() {
+  document.addEventListener('keydown', escapeFromPopup)
+};
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -171,3 +195,4 @@ function handleProfileFormSubmit(evt) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 cardForm.addEventListener('submit', handleCardFormSubmit);
+enableValidation();

@@ -1,14 +1,15 @@
 .form__field {
+  position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
-  margin: 50px auto 48px;
+  /* row-gap: 30px; */
+  margin: 50px auto 37px;
   border: none;
   padding: 0;
 }
 
 @media (max-width: 920px) {
   .form__field {
-    margin: 75px auto 45px;
+    margin: 75px auto 25px;
   }
 }

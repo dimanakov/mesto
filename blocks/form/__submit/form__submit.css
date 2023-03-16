@@ -1,6 +1,6 @@
-.form__submit-button {
+.form__submit {
   width: 100%;
-  margin-bottom: 37px;
+  margin-top: 17px;
   padding: 14px;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
@@ -9,11 +9,11 @@
 }
 
 @media (max-width: 920px) {
-  .form__submit-button {
-    margin-bottom: 25px;
+  .form__submit {
+    margin-top: 15px;
   }
 }
 
-.form__submit-button:hover {
+.form__submit:hover {
   background-color: rgba(0, 0, 0, .8);
 }
