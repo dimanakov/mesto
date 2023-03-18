@@ -28,6 +28,7 @@ const cards = [
 ////////////////////////////////////////////////////////////////////////////////////
 
 // popup и формы на странице
+const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_elements');
 const scaleImagePopup = document.querySelector('.popup_scale-image');
@@ -56,50 +57,49 @@ const figcaption = document.querySelector('.scale-image__figcaption');
 // конфигурация validate.js
 
 const configList = {
-  fieldset: '.form__field',
+  form: '.form',
   formInput: '.form__input',
   formInputTypeError: 'form__input_type_error',
   formInputErrorActive: 'form__input-error_active',
   formSubmit: '.form__submit',
   formSubmitInactive: 'form__submit_inactive',
-  openedForm: '.form',
-  openedPopup: '.popup_opened',
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// открыть popup и навесить слушателей
+// открыть popup и навесить слушатель
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened');
-  setCloseModal(popupElement);
   setEscapeListener(popupElement);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// popup - добавить карточку
+// открыть popup - добавить карточку
 addCardButton.addEventListener('click', function () {
   openPopup(cardPopup);
-  enableValidation(configList);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// popup - редактировать профиль
-editProfileButton.addEventListener('click', function () {
+const fillProfileInputs = () => {
   profileFormName.value = profileName.textContent; // перенести данные со страницы в форму
   profileFormProfession.value = profileProfession.textContent; // same
+}
+
+// открыть popup - редактировать профиль
+editProfileButton.addEventListener('click', function () {
+  fillProfileInputs();
   openPopup(profilePopup);
   // all <input> have property .value to read entered text
-  enableValidation(configList);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 // перенос данных фотографии в попап
 const scaleImage = (name, link) => {
-  openedImage.setAttribute('src', link);
-  openedImage.setAttribute('alt', name);
+  openedImage.src = link;
+  openedImage.alt = name;
   figcaption.textContent = name;
 };
 
@@ -109,8 +109,8 @@ const scaleImage = (name, link) => {
 const createCard = (card) => {
   const cardTemplate = document.querySelector('.card-template').content.cloneNode(true);
   const cardImage = cardTemplate.querySelector('.elements__image');
-  cardImage.setAttribute('src', card.link);
-  cardImage.setAttribute('alt', card.name);
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
   cardImage.addEventListener('click', function () {
     scaleImage(card.name, card.link);
     openPopup(scaleImagePopup);
@@ -168,31 +168,24 @@ const handleCardFormSubmit = (evt) => {
 // закрыть popup 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escapeFromPopup);
 };
 
-// -- через кнопку(крестик)
-closeButtons.forEach(function (button) {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', function () {
-    closePopup(popup)
-  })
-});
-
-// -- через нажатие на подложку
-const setCloseModal = (popup) => {
+// -- через нажатие на подложку и кнопку(крестик)
+// отличный вариант совмещения событий!
+popupList.forEach(function (popup) {
   popup.addEventListener('click', function (evt) {
-    if (evt.target === popup) {
+    if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) { 
       closePopup(popup);
     }
   })
-};
+})
 
 // -- через нажатие клавиши Escape
 const escapeFromPopup = (evt) => {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
-    document.removeEventListener('keydown', escapeFromPopup);
   }
 };
 
@@ -212,5 +205,7 @@ const handleProfileFormSubmit = (evt) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+fillProfileInputs ();
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 cardForm.addEventListener('submit', handleCardFormSubmit);
+enableValidation(configList);

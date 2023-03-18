@@ -60,11 +60,9 @@ const setEventListeners = (formElement, config) => {
 };
 
 const enableValidation = (config) => {
-  const openedPopup = document.querySelector(config.openedPopup);
-  const openedForm = openedPopup.querySelector(config.openedForm);
-  const fieldsetList = Array.from(openedForm.querySelectorAll(config.fieldset));
-  fieldsetList.forEach(function (fieldset) {
-    setEventListeners(fieldset, config);
+  const formList = Array.from(document.querySelectorAll(config.form));
+  formList.forEach(function (formElement) {
+    setEventListeners(formElement, config);
   })
 };
 
