@@ -159,6 +159,7 @@ const addNewCard = (heading, link) => {
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
   addNewCard(cardFormHeading.value, cardFormLink.value);
+  submitButtonInactivate(submitNewCard, configList);
   cardForm.reset();
   closePopup(cardPopup);
 };
