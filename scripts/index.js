@@ -116,38 +116,9 @@ const openScaleImage = (card) => {
   openPopup(scaleImagePopup);
 }
 
-// создание карточки из template
-const createCard = (card) => {
-  const cardClone = cardTemplate.content.cloneNode(true);
-  const cardImage = cardClone.querySelector('.elements__image');
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-  cardImage.addEventListener('click', function () {
-    scaleImage(card.name, card.link);
-    openPopup(scaleImagePopup);
-  });
-  cardClone.querySelector('.elements__heading').textContent = card.name;
-  cardClone.querySelector('.elements__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('elements__like-button_active');
-  });
-  cardClone.querySelector('.elements__remove-item').addEventListener('click', function (evt) {
-    evt.target.closest('.elements__item').remove();
-  });
-  return cardClone;
-};
-//append add node to the end of list
-//prepend add node to the beginning of list
-//before add node before the list
-//after add node after the list
-//replaceWith replace node
-
 ////////////////////////////////////////////////////////////////////////////////////
 
 // добавить карточку в начало галереи
-// const insertCardPrepend = (card) => {
-//   const createdCard = createCard(card);
-//   elementsGallery.prepend(createdCard);
-// };
 
 const insertCardPrepend = (card) => {
   const createdCard = new Card(card, cardTemplate, openScaleImage).createCard();
@@ -188,8 +159,6 @@ const closePopup = (popup) => {
   document.removeEventListener('keydown', escapeFromPopup);
 };
 
-// -- через нажатие на подложку и кнопку(крестик)
-// отличный вариант совмещения событий!
 popupList.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
@@ -227,9 +196,3 @@ cardFormValidate.enableValidation();
 profileFormValidate.enableValidation();
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 cardForm.addEventListener('submit', handleCardFormSubmit);
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
