@@ -12,6 +12,7 @@ const hideInputError = (formElement, inputElement, config) => {
   formError.textContent = '';
 };
 
+//move
 const isValid = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, config);
@@ -20,6 +21,8 @@ const isValid = (formElement, inputElement, config) => {
   }
 };
 
+
+//move
 const hasInvalidInput = (inputList) => {
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
@@ -39,6 +42,7 @@ const submitButtonInactivate = (buttonElement, config) => {
   buttonElement.disabled = true;
 };
 
+//move
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
     submitButtonInactivate(buttonElement, config);
@@ -47,6 +51,7 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   }
 };
 
+// move
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.formInput));
   const buttonElement = formElement.querySelector(config.formSubmit);
@@ -59,10 +64,12 @@ const setEventListeners = (formElement, config) => {
   })
 };
 
+// move
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.form));
   formList.forEach(function (formElement) {
     setEventListeners(formElement, config);
   })
 };
+
 
