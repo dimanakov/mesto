@@ -1,56 +1,17 @@
-import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-
-const cards = [
-  {
-    name: 'Нальчик',
-    link: 'https://images.unsplash.com/photo-1635530043255-eb163c579d4c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-  },
-  {
-    name: 'Пошехонье',
-    link: 'https://images.unsplash.com/photo-1603222450668-0a3b67e57c09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-  },
-  {
-    name: 'Калуга',
-    link: 'https://images.unsplash.com/photo-1505551071487-d4a3fd384857?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2129&q=80'
-  },
-  {
-    name: 'Минеральные воды',
-    link: './images/elements__min-vodi.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://images.unsplash.com/photo-1575297274481-1273a176f028?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-  }
-];
-
-////////////////////////////////////////////////////////////////////////////////////
-
-// конфигурация validate.js
-
-const configList = {
-  form: '.form',
-  formInput: '.form__input',
-  formInputTypeError: 'form__input_type_error',
-  formInputErrorActive: 'form__input-error_active',
-  formSubmit: '.form__submit',
-  formSubmitInactive: 'form__submit_inactive',
-};
+import Card from "./Card.js";
+import { cards, configItems } from './data.js';
 
 // popup и формы на странице
 const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_elements');
-const scaleImagePopup = document.querySelector('.popup_scale-image');
+const imageOpenPopup = document.querySelector('.popup_scale-image');
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
-const elementsGallery = document.querySelector('.elements__gallery');
-const cardFormValidate = new FormValidator(configList, cardForm);
-const profileFormValidate = new FormValidator(configList, profileForm);
+const gallery = document.querySelector('.elements__gallery');
+const cardValidateForm = new FormValidator(configItems, cardForm);
+const profileValidateForm = new FormValidator(configItems, profileForm);
 // данные профиля на странице
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
@@ -60,7 +21,7 @@ const profileFormProfession = document.querySelector('.form__input_el_profession
 const cardFormHeading = document.querySelector('.form__input_el_heading');
 const cardFormLink = document.querySelector('.form__input_el_image');
 // кнопки
-const editProfileButton = document.querySelector('.profile__edit-button');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 //const closeButtons = document.querySelectorAll('.popup__close-button');
 //const submitNewCard = cardForm.querySelector('.form__submit');
@@ -68,8 +29,6 @@ const addCardButton = document.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('.card-template');
 const openedImage = document.querySelector('.scale-image__image');
 const figcaption = document.querySelector('.scale-image__figcaption');
-
-////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,7 +53,7 @@ const fillProfileInputs = () => {
 }
 
 // открыть popup - редактировать профиль
-editProfileButton.addEventListener('click', () => {
+buttonEditProfile.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
   // all <input> have property .value to read entered text
@@ -113,7 +72,7 @@ const scaleImage = (name, link) => {
 
 const openScaleImage = (card) => {
   scaleImage(card.name, card.link);
-  openPopup(scaleImagePopup);
+  openPopup(imageOpenPopup);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -122,21 +81,19 @@ const openScaleImage = (card) => {
 
 const insertCardPrepend = (card) => {
   const createdCard = new Card(card, cardTemplate, openScaleImage).createCard();
-  elementsGallery.prepend(createdCard);
+  gallery.prepend(createdCard);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// вставить карточки в галерею из сохранённого списка
-cards.forEach(insertCardPrepend);
+// создать объект карточки перед добавлением в галерею
+// без данной функции не работает добавление новой карточки
+// предлагаю отставить упразднение, иначе проект сломается
 
-////////////////////////////////////////////////////////////////////////////////////
-
-// создать новую карточку в галерею
-const addCard = (heading, link) => {
+const addNewCard = () => {
   const newCard = {};
-  newCard.name = heading;
-  newCard.link = link;
+  newCard.name = cardFormHeading.value;
+  newCard.link = cardFormLink.value;
   insertCardPrepend(newCard);
 };
 
@@ -145,8 +102,8 @@ const addCard = (heading, link) => {
 // submit - подтвердить новую карточку
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
-  addCard(cardFormHeading.value, cardFormLink.value);
-  cardFormValidate.renderForm();
+  addNewCard();
+  cardValidateForm.renderForm();
   cardForm.reset();
   closePopup(cardPopup);
 };
@@ -190,9 +147,9 @@ const handleProfileFormSubmit = (evt) => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
-
+cards.forEach(insertCardPrepend);
 fillProfileInputs();
-cardFormValidate.enableValidation();
-profileFormValidate.enableValidation();
+cardValidateForm.enableValidation();
+profileValidateForm.enableValidation();
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 cardForm.addEventListener('submit', handleCardFormSubmit);

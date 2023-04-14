@@ -6,37 +6,38 @@ export default class Card {
     this._openScaleImage = openScaleImage;
   }
 
-  _setImage(card, emptyTemplate) {
-    this._image = emptyTemplate.querySelector('.elements__image');
-    this._image.src = card.link;
-    this._image.alt = card.name;
+  _setImage() {
+    this._image = this._card.querySelector('.elements__image');
+    this._image.src = this._data.link;
+    this._image.alt = this._data.name;
     return this._image
   }
 
-  _setEventScaleImage(card, image) {
-    image.addEventListener('click', () => {
-      this._openScaleImage(card);
+  _setEventScaleImage() {
+    this._setImage().addEventListener('click', () => {
+      this._openScaleImage(this._data);
     });
   }
 
-  _setEventLike(element) {
-    element.querySelector('.elements__like-button').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('elements__like-button_active');
+  _setEventLike() {
+    this._like = this._card.querySelector('.elements__like-button');
+    this._like.addEventListener('click', () => {
+      this._like.classList.toggle('elements__like-button_active');
     });
   }
 
-  _setEventRemoveCard(element) {
-    element.querySelector('.elements__remove-item').addEventListener('click', (evt) => {
-      evt.target.closest('.elements__item').remove();
+  _setEventRemoveCard() {
+    this._remove = this._card.querySelector('.elements__remove-item');
+    this._remove.addEventListener('click', () => {
+      this._remove.closest('.elements__item').remove();
     });
   }
 
-  _generateCard(card) {
-    this._cardImage = this._setImage(card, this._card);
-    this._setEventScaleImage(card, this._cardImage);
-    this._card.querySelector('.elements__heading').textContent = card.name;
-    this._setEventLike(this._card);
-    this._setEventRemoveCard(this._card);
+  _generateCard() {
+    this._setEventScaleImage();
+    this._card.querySelector('.elements__heading').textContent = this._data.name;
+    this._setEventLike();
+    this._setEventRemoveCard();
   }
 
   createCard() {
