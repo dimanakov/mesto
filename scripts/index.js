@@ -98,12 +98,12 @@ const addNewCard = () => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
-
+// пардоньте, изменения закоммитил, но не запушил и отправил на проверку(2 итерация)
 // submit - подтвердить новую карточку
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
   addNewCard();
-  cardValidateForm.renderForm();
+  cardValidateForm.submitButtonInactivate();
   cardForm.reset();
   closePopup(cardPopup);
 };
