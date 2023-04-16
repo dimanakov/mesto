@@ -29,7 +29,7 @@ export default class Card {
   _setEventRemoveCard() {
     this._remove = this._card.querySelector('.elements__remove-item');
     this._remove.addEventListener('click', () => {
-      this._remove.closest('.elements__item').remove();
+      this._card.remove(); // действительно, так гораздо лучше
     });
   }
 
