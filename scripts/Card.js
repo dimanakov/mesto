@@ -33,15 +33,11 @@ export default class Card {
     });
   }
 
-  _generateCard() {
+  createCard() {
     this._setEventScaleImage();
     this._card.querySelector('.elements__heading').textContent = this._data.name;
     this._setEventLike();
     this._setEventRemoveCard();
-  }
-
-  createCard() {
-    this._generateCard(this._data);
     return this._card
   }
 }

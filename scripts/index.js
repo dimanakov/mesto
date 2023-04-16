@@ -40,6 +40,7 @@ const openPopup = (popupElement) => {
 
 // открыть popup - добавить карточку
 addCardButton.addEventListener('click', () => {
+  cardValidateForm.removeError();
   openPopup(cardPopup);
 });
 
@@ -52,6 +53,8 @@ const fillProfileInputs = () => {
 
 // открыть popup - редактировать профиль
 buttonEditProfile.addEventListener('click', () => {
+  profileValidateForm.removeError();
+  profileValidateForm.submitButtonActivate();
   fillProfileInputs();
   openPopup(profilePopup);
   // all <input> have property .value to read entered text
