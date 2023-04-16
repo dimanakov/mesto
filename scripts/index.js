@@ -23,8 +23,6 @@ const cardFormLink = document.querySelector('.form__input_el_image');
 // кнопки
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-//const closeButtons = document.querySelectorAll('.popup__close-button');
-//const submitNewCard = cardForm.querySelector('.form__submit');
 // card
 const cardTemplate = document.querySelector('.card-template');
 const openedImage = document.querySelector('.scale-image__image');
