@@ -6,21 +6,19 @@
         content="IE=edge">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet"
-        href="./pages/index.css">
   <title>Место Россия</title>
 </head>
 <body class="page">
   <header class="header page__content">
     <img class="logo"
-         src="./images/logo.svg"
+         src="<%=require('./images/logo.svg')%>"
          alt="логотип">
   </header>
   <main>
     <section class="profile page__content page__content_narrow"
              aria-label="профиль пользователя">
       <img class="profile__avatar"
-           src="./images/kusto.jpg"
+           src="<%=require('./images/kusto.jpg')%>"
            alt="фотография пользователя">
       <div class="profile__info">
         <div class="profile__group">
@@ -154,8 +152,5 @@
               aria-label="удалить карточку"></button>
     </li>
   </template>
-  <!-- scripts -->
-  <script type="module"
-          src="./scripts/index.js"></script>
 </body>
 </html>

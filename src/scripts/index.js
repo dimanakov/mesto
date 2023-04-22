@@ -1,6 +1,8 @@
+import '../pages/index.css';
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 import { cards, configItems } from './data.js';
+
 
 // popup и формы на странице
 const popupList = document.querySelectorAll('.popup');

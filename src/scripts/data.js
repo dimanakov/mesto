@@ -1,3 +1,5 @@
+import minVodi from '../images/elements__min-vodi.jpg';
+
 export const cards = [
   {
     name: 'Нальчик',
@@ -17,7 +19,7 @@ export const cards = [
   },
   {
     name: 'Минеральные воды',
-    link: './images/elements__min-vodi.jpg'
+    link: minVodi
   },
   {
     name: 'Байкал',
