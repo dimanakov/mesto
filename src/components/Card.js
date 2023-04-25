@@ -1,9 +1,11 @@
+//import Popup from './Popup.js';
+
 export default class Card {
-  constructor(data, cardTemplate, openScaleImage) {
+  constructor(data, cardTemplate, handleCardClick) {
     this._data = data;
     this._template = cardTemplate;
     this._card = this._template.content.querySelector('.elements__item').cloneNode(true);
-    this._openScaleImage = openScaleImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _setImage() {
@@ -15,7 +17,7 @@ export default class Card {
 
   _setEventScaleImage() {
     this._setImage().addEventListener('click', () => {
-      this._openScaleImage(this._data);
+      this._handleCardClick(this._data);
     });
   }
 

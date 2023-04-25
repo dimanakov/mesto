@@ -1,8 +1,9 @@
 import '../pages/index.css';
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
-import { cards, configItems } from './data.js';
-
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import { cards, configForm } from '../components/data.js';
+import UserInfo from '../components/UserInfo.js';
+import Popup from '../components/Popup.js';
 
 // popup и формы на странице
 const popupList = document.querySelectorAll('.popup');
@@ -12,11 +13,12 @@ const imageOpenPopup = document.querySelector('.popup_scale-image');
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
 const gallery = document.querySelector('.elements__gallery');
-const cardValidateForm = new FormValidator(configItems, cardForm);
-const profileValidateForm = new FormValidator(configItems, profileForm);
+const cardValidateForm = new FormValidator(configForm, cardForm);
+const profileValidateForm = new FormValidator(configForm, profileForm);
 // данные профиля на странице
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
+const profileUserInfo = { nameSelector: profileName, professionSelector: profileProfession };
 // поля form
 const profileFormName = document.querySelector('.form__input_el_name');
 const profileFormProfession = document.querySelector('.form__input_el_profession');
@@ -30,6 +32,8 @@ const cardTemplate = document.querySelector('.card-template');
 const openedImage = document.querySelector('.scale-image__image');
 const figcaption = document.querySelector('.scale-image__figcaption');
 
+const user = new UserInfo(profileUserInfo);
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 // открыть popup и навесить слушатель
@@ -40,10 +44,14 @@ const openPopup = (popupElement) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+const newCardPopup = new Popup(cardPopup);
+const userProfilePopup = new Popup(profilePopup);
+
 // открыть popup - добавить карточку
 addCardButton.addEventListener('click', () => {
   cardValidateForm.removeError();
-  openPopup(cardPopup);
+  newCardPopup.open();
+  newCardPopup.setEventListeners()
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -57,8 +65,10 @@ const fillProfileInputs = () => {
 buttonEditProfile.addEventListener('click', () => {
   profileValidateForm.removeError();
   profileValidateForm.submitButtonActivate();
-  fillProfileInputs();
-  openPopup(profilePopup);
+ fillProfileInputs();
+ // user.getUserInfo();
+  userProfilePopup.open();
+ // openPopup(profilePopup);
   // all <input> have property .value to read entered text
 });
 
@@ -83,6 +93,7 @@ const openScaleImage = (card) => {
 // добавить карточку в начало галереи
 
 const insertCardPrepend = (card) => {
+ // console.log(cardTemplate.content);
   const createdCard = new Card(card, cardTemplate, openScaleImage).createCard();
   gallery.prepend(createdCard);
 };
@@ -108,7 +119,8 @@ const handleCardFormSubmit = (evt) => {
   addNewCard();
   cardValidateForm.submitButtonInactivate();
   cardForm.reset();
-  closePopup(cardPopup);
+  newCardPopup.close()
+ // closePopup(cardPopup);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -119,13 +131,13 @@ const closePopup = (popup) => {
   document.removeEventListener('keydown', escapeFromPopup);
 };
 
-popupList.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    }
-  })
-})
+// popupList.forEach((popup) => {
+//   popup.addEventListener('click', (evt) => {
+//     if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
+//       closePopup(popup);
+//     }
+//   })
+// })
 
 // -- через нажатие клавиши Escape
 const escapeFromPopup = (evt) => {
@@ -146,7 +158,8 @@ const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = profileFormName.value;
   profileProfession.textContent = profileFormProfession.value;
-  closePopup(profilePopup);
+  userProfilePopup.close();
+  //closePopup(profilePopup);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////

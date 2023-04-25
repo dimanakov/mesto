@@ -27,7 +27,7 @@ export const cards = [
   }
 ];
 
-export const configItems = {
+export const configForm = {
   form: '.form',
   formInput: '.form__input',
   formInputTypeError: 'form__input_type_error',
