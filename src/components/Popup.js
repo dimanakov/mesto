@@ -1,10 +1,6 @@
 export default class Popup {
   constructor(popupElement) {
     this._popup = popupElement;
-    //this._handleEscClose = this._handleEscClose.bind(this);
-    //this._popup = this._popup.bind(this)
-    // this._p = document.querySelector('.popup_elements')
-    // console.log(this._p);
   }
 
   _handleEscClose = (evt) => { // логика закрытия попапа клавишей Esc

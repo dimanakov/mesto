@@ -4,12 +4,13 @@ import Card from "../components/Card.js";
 import { cards, configForm } from '../components/data.js';
 import UserInfo from '../components/UserInfo.js';
 import Popup from '../components/Popup.js';
+import Section from '../components/Section.js';
 
 // popup и формы на странице
 const popupList = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_elements');
-const imageOpenPopup = document.querySelector('.popup_scale-image');
+const imagePopup = document.querySelector('.popup_scale-image');
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
 const gallery = document.querySelector('.elements__gallery');
@@ -37,38 +38,50 @@ const user = new UserInfo(profileUserInfo);
 ////////////////////////////////////////////////////////////////////////////////////
 
 // открыть popup и навесить слушатель
-const openPopup = (popupElement) => {
-  popupElement.classList.add('popup_opened');
-  setEscapeListener(popupElement);
-}
+// const openPopup = (popupElement) => {
+//   popupElement.classList.add('popup_opened');
+//   setEscapeListener(popupElement);
+// }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 const newCardPopup = new Popup(cardPopup);
 const userProfilePopup = new Popup(profilePopup);
-
+const imageOpenPopup = new Popup(imagePopup);
 // открыть popup - добавить карточку
 addCardButton.addEventListener('click', () => {
   cardValidateForm.removeError();
-  newCardPopup.open();
   newCardPopup.setEventListeners()
+  newCardPopup.open();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+// UserInfo
 
 const fillProfileInputs = () => {
   profileFormName.value = profileName.textContent; // перенести данные со страницы в форму
   profileFormProfession.value = profileProfession.textContent; // same
 }
 
+// сохранить изменения Профиля
+const handleProfileFormSubmit = (evt) => {
+  evt.preventDefault();
+  profileName.textContent = profileFormName.value;
+  profileProfession.textContent = profileFormProfession.value;
+  userProfilePopup.close();
+  //closePopup(profilePopup);
+};
+
 // открыть popup - редактировать профиль
 buttonEditProfile.addEventListener('click', () => {
   profileValidateForm.removeError();
   profileValidateForm.submitButtonActivate();
- fillProfileInputs();
- // user.getUserInfo();
+  fillProfileInputs();
+  // user.getUserInfo();
+  userProfilePopup.setEventListeners();
   userProfilePopup.open();
- // openPopup(profilePopup);
+  // openPopup(profilePopup);
   // all <input> have property .value to read entered text
 });
 
@@ -83,20 +96,33 @@ const scaleImage = (name, link) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const openScaleImage = (card) => {
-  scaleImage(card.name, card.link);
-  openPopup(imageOpenPopup);
+const handleCardClick = (image) => {
+  scaleImage(image.alt, image.src);
+  imageOpenPopup.setEventListeners();
+  imageOpenPopup.open();
+  //openPopup(imageOpenPopup);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+//Section
+// console.log(cards);
+const defaultCardList = new Section({
+  data: cards,
+  renderer: (item) => {
+    console.log('1');
+    const cardElement = new Card(item, cardTemplate, handleCardClick);
+    return cardElement.createCard();
+  }
+}, gallery);
 // добавить карточку в начало галереи
 
-const insertCardPrepend = (card) => {
- // console.log(cardTemplate.content);
-  const createdCard = new Card(card, cardTemplate, openScaleImage).createCard();
-  gallery.prepend(createdCard);
-};
+defaultCardList.renderer();
+
+// const insertCardPrepend = (card) => {
+//   const createdCard = new Card(card, cardTemplate, handleCardClick).createCard();
+//   gallery.prepend(createdCard);
+// };
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,12 +130,14 @@ const insertCardPrepend = (card) => {
 // без данной функции не работает добавление новой карточки
 // предлагаю отставить упразднение, иначе проект сломается
 
-const addNewCard = () => {
-  const newCard = {};
-  newCard.name = cardFormHeading.value;
-  newCard.link = cardFormLink.value;
-  insertCardPrepend(newCard);
-};
+// const addNewCard = () => {
+//   const newCard = {};
+//   newCard.name = cardFormHeading.value;
+//   newCard.link = cardFormLink.value;
+//   insertCardPrepend(newCard);
+// };
+
+// cards.forEach(insertCardPrepend);
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,16 +148,16 @@ const handleCardFormSubmit = (evt) => {
   cardValidateForm.submitButtonInactivate();
   cardForm.reset();
   newCardPopup.close()
- // closePopup(cardPopup);
+  // closePopup(cardPopup);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 // закрыть popup 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', escapeFromPopup);
-};
+// const closePopup = (popup) => {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', escapeFromPopup);
+// };
 
 // popupList.forEach((popup) => {
 //   popup.addEventListener('click', (evt) => {
@@ -140,30 +168,23 @@ const closePopup = (popup) => {
 // })
 
 // -- через нажатие клавиши Escape
-const escapeFromPopup = (evt) => {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
-  }
-};
+// const escapeFromPopup = (evt) => {
+//   if (evt.key === 'Escape') {
+//     const popup = document.querySelector('.popup_opened');
+//     closePopup(popup);
+//   }
+// };
 
-const setEscapeListener = () => {
-  document.addEventListener('keydown', escapeFromPopup)
-};
+// const setEscapeListener = () => {
+//   document.addEventListener('keydown', escapeFromPopup)
+// };
+
+////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// сохранить изменения Профиля
-const handleProfileFormSubmit = (evt) => {
-  evt.preventDefault();
-  profileName.textContent = profileFormName.value;
-  profileProfession.textContent = profileFormProfession.value;
-  userProfilePopup.close();
-  //closePopup(profilePopup);
-};
 
-////////////////////////////////////////////////////////////////////////////////////
-cards.forEach(insertCardPrepend);
+
 fillProfileInputs();
 cardValidateForm.enableValidation();
 profileValidateForm.enableValidation();
