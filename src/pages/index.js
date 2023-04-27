@@ -105,19 +105,21 @@ const handleCardClick = (image) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-//Section
-// console.log(cards);
-const defaultCardList = new Section({
-  data: cards,
-  renderer: (item) => {
-    console.log('1');
-    const cardElement = new Card(item, cardTemplate, handleCardClick);
-    return cardElement.createCard();
-  }
-}, gallery);
-// добавить карточку в начало галереи
+  const defaultCard = new Section({
+    data: cards,
+    renderer: (item) => {
+      const card = new Card(item, cardTemplate, handleCardClick);
+      const cardItem = card.createCard();
+      defaultCard.addItem(cardItem);
+    }
+  }, gallery);
+  // добавить карточку в начало галереи
+defaultCard.renderItems();
 
-defaultCardList.renderer();
+
+
+//Section
+
 
 // const insertCardPrepend = (card) => {
 //   const createdCard = new Card(card, cardTemplate, handleCardClick).createCard();
@@ -144,6 +146,7 @@ defaultCardList.renderer();
 // submit - подтвердить новую карточку
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
+
   addNewCard();
   cardValidateForm.submitButtonInactivate();
   cardForm.reset();
@@ -180,10 +183,6 @@ const handleCardFormSubmit = (evt) => {
 // };
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////
-
-
 
 fillProfileInputs();
 cardValidateForm.enableValidation();
