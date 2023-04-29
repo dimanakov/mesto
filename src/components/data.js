@@ -27,7 +27,7 @@ export const cards = [
   }
 ];
 
-export const configForm = {
+export const configValidatorForm = {
   form: '.form',
   formInput: '.form__input',
   formInputTypeError: 'form__input_type_error',
@@ -35,3 +35,18 @@ export const configForm = {
   formSubmit: '.form__submit',
   formSubmitInactive: 'form__submit_inactive',
 };
+
+export const configProfile = {
+  popup: '.popup_profile',
+  name: '.profile__name',
+  profession: '.profile__profession',
+};
+
+export const configForm = {
+  profileForm: 'profile-form',
+  profileFormName: '.form__input_el_name',
+  profileFormProfession: '.form__input_el_profession',
+  cardForm: 'card-form',
+  cardFormHeading: '.form__input_el_heading',
+  cardFormLink: '.form__input_el_image',
+}

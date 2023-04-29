@@ -1,6 +1,8 @@
 export default class Popup {
-  constructor(popupElement) {
-    this._popup = popupElement;
+  constructor(popup) {
+  this._popup = document.querySelector(popup);
+  //this._popup = popup;
+  console.log(this._popup);
   }
 
   _handleEscClose = (evt) => { // логика закрытия попапа клавишей Esc
@@ -9,7 +11,7 @@ export default class Popup {
     }
   }
 
-  setEventListeners = () => { // добавляет слушателя иконке закрытия попапа и при клике вокруг формы
+  setEventListeners () { // добавляет слушателя иконке закрытия попапа и при клике вокруг формы
     document.addEventListener('keydown', this._handleEscClose);
     this._popup.addEventListener('click', (evt) => {
       if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
@@ -18,11 +20,11 @@ export default class Popup {
     })
   }
 
-  open() {
+  open = () => {
     this._popup.classList.add('popup_opened');
   }
 
-  close() {
+  close () {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   }

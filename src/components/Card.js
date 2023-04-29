@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, cardTemplate, handleCardClick) {
+  constructor({data, handleCardClick}, cardTemplate) {
     this._data = data;
     this._template = cardTemplate;
     this._card = this._template.content.querySelector('.elements__item').cloneNode(true);
