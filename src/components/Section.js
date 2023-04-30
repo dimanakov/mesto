@@ -1,6 +1,6 @@
 export default class Section {
-  constructor({ data, renderer }, container) {
-    this._renderedItems = data; // массив данных, к-ые нужно добавить на страницу при инициализации класса
+  constructor({ items, renderer }, container) {
+    this._renderedItems = items; // массив данных, к-ые нужно добавить на страницу при инициализации класса
     this._renderer = renderer; // функция создания и отрисовки данных на странице
     this._container = container; // селектор контейнера для создаваемых элементов
   }
