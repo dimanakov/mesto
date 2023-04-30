@@ -10,11 +10,11 @@ export default class PopupWithImage extends Popup{
     //console.log(this._popup);
   }
 
-  open = () => { // перезаписывает родительский метод open
-    this._image.src = this._src;
-    this._image.title = this._title;
-    this._figcaption.textContent = this._title;
-    super._popup.open();
+  open (image) { // перезаписывает родительский метод open
+    this._image.src = image.src;
+    this._image.title = image.alt;
+    this._figcaption.textContent = image.alt;
+    super.open();
   }
 }
   // const scaleImage = (image) => {

@@ -37,16 +37,18 @@ export const configValidatorForm = {
 };
 
 export const configProfile = {
-  popup: '.popup_profile',
   name: '.profile__name',
   profession: '.profile__profession',
 };
 
-export const configForm = {
+export const configPopup = {
+  profilePopup: '.popup_profile',
   profileForm: 'profile-form',
   profileFormName: '.form__input_el_name',
   profileFormProfession: '.form__input_el_profession',
+  cardPopup: '.popup_elements',
   cardForm: 'card-form',
   cardFormHeading: '.form__input_el_heading',
   cardFormLink: '.form__input_el_image',
-}
+  imagePopup: '.popup_scale-image',
+} 
