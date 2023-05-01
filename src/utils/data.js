@@ -42,6 +42,8 @@ export const configProfile = {
 };
 
 export const configPopup = {
+  avatarPopup: '.popup_avatar',
+  avatarForm: 'avatar-form',
   profilePopup: '.popup_profile',
   profileForm: 'profile-form',
   cardPopup: '.popup_elements',

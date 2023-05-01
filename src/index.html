@@ -47,6 +47,35 @@
   <footer class="footer page__content page__content_narrow">
     <p class="text footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
+  <!-- popup avatar-->
+  <div class="popup popup_form popup_avatar">
+    <div class="popup__container">
+      <form class="form form_avatar"
+            name="avatar-form"
+            aria-label="Обновить аватар"
+            novalidate>
+        <h2 class="heading form__heading">Обновить аватар</h2>
+        <fieldset class="form__field form__field_profile-avatar">
+          <input class="form__input form__input_el_avatar"
+                 id="avatar-input"
+                 name="avatar"
+                 aria-label="Аватар"
+                 placeholder="Ссылка на изображение"
+                 autocomplete="off"
+                 type="url"
+                 minlength="2"
+                 maxlength="200"
+                 required>
+          <span class="avatar-input-error form__input-error"></span>
+          <button type="submit"
+                  class="button form__submit text">Сохранить</button>
+        </fieldset>
+      </form>
+      <button type="button"
+              class="button button_focus popup__close-button"
+              aria-label="закрыть"></button>
+    </div>
+  </div>
   <!-- popup profile -->
   <div class="popup popup_form popup_profile">
     <div class="popup__container">

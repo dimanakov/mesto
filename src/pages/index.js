@@ -8,12 +8,14 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 
 const gallery = document.querySelector('.elements__gallery');
+const avatarValidateForm = new FormValidator(configValidatorForm, configPopup.avatarForm);
 const cardValidateForm = new FormValidator(configValidatorForm, configPopup.cardForm);
 const profileValidateForm = new FormValidator(configValidatorForm, configPopup.profileForm);
 // поля form
 const profileFormName = document.querySelector('.form__input_el_name');
 const profileFormProfession = document.querySelector('.form__input_el_profession');
 // кнопки
+const buttonEditAvatar = document.querySelector('.profile__avatar-button');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 // card
@@ -25,6 +27,27 @@ const userInfo = new UserInfo( // создаём класс пользовате
   configProfile.name,
   configProfile.profession,
 );
+
+const userAvatarFormPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
+  {
+    popup: configPopup.avatarPopup,
+    handleClickSubmit: (data) => {
+      
+
+
+
+      userAvatarFormPopup.close();
+    }
+  });
+
+userAvatarFormPopup.setEventListeners();
+// навешиваем слушатель на кнопку редактирования аватара
+
+buttonEditAvatar.addEventListener('click', () => {
+  avatarValidateForm.removeError();
+  avatarValidateForm.submitButtonInactivate();
+  userAvatarFormPopup.open();
+})
 
 // навешиваем слушатель на кнопку редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
@@ -41,6 +64,11 @@ const userProfileFormPopup = new PopupWithForm(  // создаём экземп�
     popup: configPopup.profilePopup,
     handleClickSubmit: (data) => {
       userInfo.setUserInfo(data);
+
+
+
+
+
       userProfileFormPopup.close();
     }
   });
@@ -55,6 +83,11 @@ const fillProfileInputs = (info) => { // перенесим данные со с
 const newCardFormPopup = new PopupWithForm({
   popup: configPopup.cardPopup,
   handleClickSubmit: (item) => {
+
+
+
+
+    
     const card = createNewCard(item);
     defaultCardList.addItem(card);
     newCardFormPopup.close();
@@ -99,6 +132,6 @@ const defaultCardList = new Section({ // создаем массив карто�
 defaultCardList.renderItems(); // отрисовка карточек из массива defaultCardList
 
 ////////////////////////////////////////////////////////////////////////////////////
-
+avatarValidateForm.enableValidation();
 cardValidateForm.enableValidation();
 profileValidateForm.enableValidation();
