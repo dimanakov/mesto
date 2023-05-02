@@ -24,6 +24,7 @@ let cardToRemove = null; // переменная для хранения кар�
 ////////////////////////////////////////////////////////////////////////////////////
 
 const userInfo = new UserInfo( // создаём класс пользователя для 
+  configProfile.avatar,
   configProfile.name,
   configProfile.profession,
 );
@@ -31,8 +32,8 @@ const userInfo = new UserInfo( // создаём класс пользовате
 const userAvatarFormPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
   {
     popup: configPopup.avatarPopup,
-    handleClickSubmit: (data) => {
-      
+    handleClickSubmit: (link) => {
+      userInfo.setUserAvatar(link);
 
 
 

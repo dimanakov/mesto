@@ -37,6 +37,7 @@ export const configValidatorForm = {
 };
 
 export const configProfile = {
+  avatar: '.profile__avatar',
   name: '.profile__name',
   profession: '.profile__profession',
 };

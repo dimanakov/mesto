@@ -22,7 +22,8 @@
              src="<%=require('./images/kusto.jpg')%>"
              alt="фотография пользователя">
         <button class="button profile__avatar-button"
-                type="button">редактировать аватар</button>
+                type="button"
+                aria-label="редактировать аватар"></button>
       </div>
       <div class="profile__info">
         <div class="profile__group">
@@ -54,7 +55,8 @@
             name="avatar-form"
             aria-label="Обновить аватар"
             novalidate>
-        <h2 class="heading form__heading form__heading_type_input">Обновить аватар</h2>
+        <h2 class="heading form__heading form__heading_type_input">Обновить
+          аватар</h2>
         <fieldset class="form__field form__field_profile-avatar">
           <input class="form__input form__input_el_avatar"
                  id="avatar-input"
@@ -83,10 +85,10 @@
             name="remove-card-form"
             aria-label="Удалить карточку"
             novalidate>
-          <h2 class="heading form__heading form__heading_type_confirm">Вы уверены?</h2> 
-          <button type="submit"
-                  class="button form__submit text">Да</button>
-
+        <h2 class="heading form__heading form__heading_type_confirm">Вы
+          уверены?</h2>
+        <button type="submit"
+                class="button form__submit text">Да</button>
       </form>
       <button type="button"
               class="button button_focus popup__close-button"
@@ -100,7 +102,8 @@
             name="profile-form"
             aria-label="Заполните профиль"
             novalidate>
-        <h2 class="heading form__heading form__heading_type_input">Редактировать профиль</h2>
+        <h2 class="heading form__heading form__heading_type_input">
+          Редактировать профиль</h2>
         <fieldset class="form__field form__field_profile-info">
           <input class="form__input form__input_el_name"
                  id="name-input"
@@ -140,7 +143,8 @@
             name="card-form"
             aria-label="Создание карточки"
             novalidate>
-        <h2 class="heading form__heading form__heading_type_input">Новое место</h2>
+        <h2 class="heading form__heading form__heading_type_input">Новое
+          место</h2>
         <fieldset class="form__field form__field_profile-info">
           <input class="form__input form__input_el_heading"
                  id="heading-input"
@@ -193,9 +197,12 @@
            alt="#">
       <div class="elements__group">
         <h2 class="heading elements__heading"></h2>
-        <button class="button elements__like-button"
-                type="button"
-                aria-label="отметить: нравится"></button>
+        <div class="elements__like-group">
+          <button class="button elements__like-button"
+                  type="button"
+                  aria-label="отметить: нравится"></button>
+          <span class="elements__like-count">0</span>
+        </div>
       </div>
       <button class="button elements__remove-item"
               type="button"

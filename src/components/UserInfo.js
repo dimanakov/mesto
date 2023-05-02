@@ -1,8 +1,13 @@
 export default class UserInfo {
-  constructor(profileNameSelector, profileProfessionSelector) {
+  constructor(profileAvatarSelector, profileNameSelector, profileProfessionSelector) {
+    this._avatar = document.querySelector(profileAvatarSelector);
     this._name = document.querySelector(profileNameSelector);
     this._profession = document.querySelector(profileProfessionSelector);
   }
+
+setUserAvatar (link) {
+  this._avatar.src = link.avatar;
+}
 
   getUserInfo () { // возвращает объект с данными пользователя. Используется при открытии попапа профиля
     const userInfo = {};
