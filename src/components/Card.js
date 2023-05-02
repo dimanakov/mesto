@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ data, handleCardClick }, cardTemplate) {
+  constructor({ data, handleCardClick, handleRemoveCardClick }, cardTemplate) {
     this._data = data;
     this._template = cardTemplate;
     this._card = this._template.content.querySelector('.elements__item').cloneNode(true);
     this._handleCardClick = handleCardClick;
+    this._handleRemoveCardClick = handleRemoveCardClick;
   }
 
   _setImage = () => {
@@ -30,7 +31,7 @@ export default class Card {
   _setEventRemoveCard = () => {
     this._remove = this._card.querySelector('.elements__remove-item');
     this._remove.addEventListener('click', () => {
-      this._card.remove();
+      this._handleRemoveCardClick(this._card);
     });
   }
 

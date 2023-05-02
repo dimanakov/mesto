@@ -53,6 +53,8 @@
 @import url('../blocks/form/__input-error/_active/form__input-error_active.css');
 @import url('../blocks/form/__submit/form__submit.css');
 @import url('../blocks/form/__submit/_inactive/form__submit_inactive.css');
+@import url('../blocks/form/__heading/_type/form__heading_type_input.css');
+@import url('../blocks/form/__heading/_type/form__heading_type_confirm.css');
 /* scale-image */
 @import url('../blocks/popup/_scale-image/popup_scale-image.css');
 @import url('../blocks/popup/__image-container/popup__image-container.css');

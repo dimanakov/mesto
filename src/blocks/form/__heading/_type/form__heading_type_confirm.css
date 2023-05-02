@@ -1,0 +1,9 @@
+.form__heading_type_confirm {
+  margin: 36px auto 14px
+  }
+
+  @media (max-width: 920px) {
+    .form__heading_type_confirm {
+      margin: 25px auto 14px;
+    }
+  }

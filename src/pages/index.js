@@ -20,7 +20,7 @@ const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 // card
 const cardTemplate = document.querySelector('.card-template');
-
+let cardToRemove = null; // переменная для хранения карточки к удалению
 ////////////////////////////////////////////////////////////////////////////////////
 
 const userInfo = new UserInfo( // создаём класс пользователя для 
@@ -48,6 +48,25 @@ buttonEditAvatar.addEventListener('click', () => {
   avatarValidateForm.submitButtonInactivate();
   userAvatarFormPopup.open();
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const confirmRemoveCardPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
+  {
+    popup: configPopup.removeCardPopup,
+    handleClickSubmit: () => {
+      cardToRemove.remove();
+      
+
+
+
+      confirmRemoveCardPopup.close();
+    }
+  });
+
+confirmRemoveCardPopup.setEventListeners();
+
+////////////////////////////////////////////////////////////////////////////////////
 
 // навешиваем слушатель на кнопку редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
@@ -87,7 +106,7 @@ const newCardFormPopup = new PopupWithForm({
 
 
 
-    
+
     const card = createNewCard(item);
     defaultCardList.addItem(card);
     newCardFormPopup.close();
@@ -115,6 +134,13 @@ const createNewCard = (data) => { // функция создания карто�
     data,
     handleCardClick: (image) => {
       imagePopup.open(image);
+    },
+    handleRemoveCardClick: (card) => {
+      confirmRemoveCardPopup.open();
+      cardToRemove = card;
+     // confirmRemoveCardPopup.handleRemoveSubmit(card);
+
+      //card.remove();
     }
   },
     cardTemplate);

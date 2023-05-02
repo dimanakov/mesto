@@ -51,4 +51,6 @@ export const configPopup = {
   cardFormHeading: '.form__input_el_heading',
   cardFormLink: '.form__input_el_image',
   imagePopup: '.popup_scale-image',
+  removeCardPopup: '.popup_remove-card',
+  removeCardForm: 'remove-card-form'
 };

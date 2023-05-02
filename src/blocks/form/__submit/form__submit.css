@@ -1,6 +1,6 @@
 .form__submit {
   width: 100%;
-  margin-top: 17px;
+  margin: 18px auto 36px;
   padding: 14px;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
@@ -10,7 +10,7 @@
 
 @media (max-width: 920px) {
   .form__submit {
-    margin-top: 15px;
+    margin: 15px auto 25px;
   }
 }
 

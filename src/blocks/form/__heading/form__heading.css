@@ -1,5 +1,4 @@
 .form__heading {
-  margin-top: 34px;
   color: #000;
   font-weight: 900;
   font-size: 24px;
@@ -8,7 +7,6 @@
 
 @media (max-width: 920px) {
   .form__heading {
-    margin-top: 25px;
     font-size: 18px;
     line-height: 21.78px;
   }

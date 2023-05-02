@@ -54,7 +54,7 @@
             name="avatar-form"
             aria-label="Обновить аватар"
             novalidate>
-        <h2 class="heading form__heading">Обновить аватар</h2>
+        <h2 class="heading form__heading form__heading_type_input">Обновить аватар</h2>
         <fieldset class="form__field form__field_profile-avatar">
           <input class="form__input form__input_el_avatar"
                  id="avatar-input"
@@ -76,6 +76,23 @@
               aria-label="закрыть"></button>
     </div>
   </div>
+  <!-- popup remove card -->
+  <div class="popup popup_form popup_remove-card">
+    <div class="popup__container">
+      <form class="form form_remove-card"
+            name="remove-card-form"
+            aria-label="Удалить карточку"
+            novalidate>
+          <h2 class="heading form__heading form__heading_type_confirm">Вы уверены?</h2> 
+          <button type="submit"
+                  class="button form__submit text">Да</button>
+
+      </form>
+      <button type="button"
+              class="button button_focus popup__close-button"
+              aria-label="закрыть"></button>
+    </div>
+  </div>
   <!-- popup profile -->
   <div class="popup popup_form popup_profile">
     <div class="popup__container">
@@ -83,7 +100,7 @@
             name="profile-form"
             aria-label="Заполните профиль"
             novalidate>
-        <h2 class="heading form__heading">Редактировать профиль</h2>
+        <h2 class="heading form__heading form__heading_type_input">Редактировать профиль</h2>
         <fieldset class="form__field form__field_profile-info">
           <input class="form__input form__input_el_name"
                  id="name-input"
@@ -123,7 +140,7 @@
             name="card-form"
             aria-label="Создание карточки"
             novalidate>
-        <h2 class="heading form__heading">Новое место</h2>
+        <h2 class="heading form__heading form__heading_type_input">Новое место</h2>
         <fieldset class="form__field form__field_profile-info">
           <input class="form__input form__input_el_heading"
                  id="heading-input"

@@ -2,14 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  /* row-gap: 30px; */
-  margin: 50px auto 37px;
+  margin: 0 auto;
   border: none;
   padding: 0;
-}
-
-@media (max-width: 920px) {
-  .form__field {
-    margin: 75px auto 25px;
-  }
 }
