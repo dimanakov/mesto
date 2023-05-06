@@ -16,18 +16,10 @@ export default class PopupWithForm extends Popup {
     return formValues
   }
 
-  setEventListenersRemove() {
-    this._popup.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._handleClickSubmit();
-    });
-    super.setEventListeners();
-  }
-
   setEventListeners() { // перезаписывает родит метод, добавляет обработчик submit'a формы
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      const inputValues = this._getInputValues();
+      const inputValues = this._getInputValues(); 
       this._handleClickSubmit(inputValues);
     });
     super.setEventListeners();

@@ -17,6 +17,6 @@ export default class Section {
   };
 
   addItem = (element) => { // публичный медод, к-ый принимает DOM элемент и добавляет его в контейнер
-    this._container.prepend(element);
+    this._container.append(element);
   }
 }

@@ -1,11 +1,13 @@
 import '../pages/index.css';
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import { cards, configValidatorForm, configProfile, configPopup } from '../utils/data.js';
+import { configValidatorForm, configProfile, configPopup } from '../utils/data.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
+import { api } from '../components/Api.js';
 
 const gallery = document.querySelector('.elements__gallery');
 const avatarValidateForm = new FormValidator(configValidatorForm, configPopup.avatarForm);
@@ -20,55 +22,135 @@ const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 // card
 const cardTemplate = document.querySelector('.card-template');
-let cardToRemove = null; // переменная для хранения карточки к удалению
+let cardToRemove; // переменная для хранения карточки к удалению
+
 ////////////////////////////////////////////////////////////////////////////////////
 
-const userInfo = new UserInfo( // создаём класс пользователя для 
+const userInfo = new UserInfo( // создаём класс пользователя
   configProfile.avatar,
   configProfile.name,
   configProfile.profession,
 );
 
+////////////////////////////////////////////////////////////////////////////////////
+
 const userAvatarFormPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
   {
     popup: configPopup.avatarPopup,
     handleClickSubmit: (link) => {
-      userInfo.setUserAvatar(link);
-
-
-
-      userAvatarFormPopup.close();
+      (async () => {
+        await api.setUserAvatar(link);
+        upUserInfoApi();
+        userInfo.setUserAvatar(link);
+        userAvatarFormPopup.close();
+      })();
     }
   });
 
-userAvatarFormPopup.setEventListeners();
-// навешиваем слушатель на кнопку редактирования аватара
-
-buttonEditAvatar.addEventListener('click', () => {
-  avatarValidateForm.removeError();
-  avatarValidateForm.submitButtonInactivate();
-  userAvatarFormPopup.open();
-})
-
 ////////////////////////////////////////////////////////////////////////////////////
 
-const confirmRemoveCardPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
+const confirmRemoveCardPopup = new PopupWithConfirmation(  // создаём экземпляр попапа для удаления карточки
   {
     popup: configPopup.removeCardPopup,
     handleClickSubmit: () => {
       cardToRemove.remove();
-      
-
-
-
       confirmRemoveCardPopup.close();
     }
   });
 
-confirmRemoveCardPopup.setEventListeners();
+////////////////////////////////////////////////////////////////////////////////////
+
+const userProfileFormPopup = new PopupWithForm(  // создаём экземпляр попапа для профиля пользователя
+  {
+    popup: configPopup.profilePopup,
+    handleClickSubmit: (data) => {
+      (async () => {
+        await api.setUserInfo(data);
+        upUserInfoApi();
+        userProfileFormPopup.close()
+      })();
+    }
+  });
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+const fillProfileInputs = (info) => { // функиця переноса данных со страницы в форму
+  profileFormName.value = info.name;
+  profileFormProfession.value = info.about;
+};
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const newCardFormPopup = new PopupWithForm({ // создаём экземпляр попапа создания новой карточки
+  popup: configPopup.cardPopup,
+  handleClickSubmit: (item) => {
+    (async () => {
+      await api.addCard(item);
+      getCards();
+      newCardFormPopup.close()
+    })();
+  },
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const imagePopup = new PopupWithImage(configPopup.imagePopup); // создаём экземпляр попапа для увеличенных изображений
+
+////////////////////////////////////////////////////////////////////////////////////
+
+let userId;
+
+async function getCards() {
+  const cardsList = await api.getInitialCards();
+  const defaultCardList = new Section({ // создаем массив карточек из списка по умолчанию
+    items: cardsList,
+    renderer: (item) => {
+      const card = createNewCard(item);
+      defaultCardList.addItem(card);
+    }
+  }, gallery);
+  defaultCardList.renderItems();
+};
+
+async function upUserInfoApi() {
+  const userData = await api.getUserInfo();
+  userId = userData._id;
+  userInfo.setUserAvatar(userData);
+  userInfo.setUserInfo(userData);
+};
+
+const createNewCard = (data) => { // функция создания карточки
+  const newCard = new Card({
+    data, userId,
+    handleCardClick: (image) => {
+      imagePopup.open(image);
+    },
+    handleRemoveCardClick: (card) => {
+      confirmRemoveCardPopup.open();
+      cardToRemove = card;
+    },
+    handleLikeClick: (card) => {
+      (async () => {
+        const res = await api.addLike(card);
+        newCard.like(res.likes.length);
+      })();
+    },
+    handleRemoveLikeClick: (card) => {
+      (async () => {
+        const res = await api.removeLike(card);
+        //console.log(res.likes.length);
+        newCard.like(res.likes.length);
+      })();
+    }
+  },
+    cardTemplate);
+  return newCard.createCard();
+};
+
+upUserInfoApi();
+getCards();
+
+////////////////////////////////////////////////////////////////////////////////////
 // навешиваем слушатель на кнопку редактирования профиля
 buttonEditProfile.addEventListener('click', () => {
   profileValidateForm.removeError();
@@ -79,41 +161,6 @@ buttonEditProfile.addEventListener('click', () => {
   // all <input> have property .value to read entered text
 });
 
-const userProfileFormPopup = new PopupWithForm(  // создаём экземпляр попапа для профиля
-  {
-    popup: configPopup.profilePopup,
-    handleClickSubmit: (data) => {
-      userInfo.setUserInfo(data);
-
-
-
-
-
-      userProfileFormPopup.close();
-    }
-  });
-
-userProfileFormPopup.setEventListeners(); // навешиваем слушатели закрытия попапа
-
-const fillProfileInputs = (info) => { // перенесим данные со страницы в форму
-  profileFormName.value = info.name;
-  profileFormProfession.value = info.profession;
-}
-
-const newCardFormPopup = new PopupWithForm({
-  popup: configPopup.cardPopup,
-  handleClickSubmit: (item) => {
-
-
-
-
-
-    const card = createNewCard(item);
-    defaultCardList.addItem(card);
-    newCardFormPopup.close();
-  },
-});
-
 // навешиваем слушатель клика на пкнопку "добавить карточку"
 addCardButton.addEventListener('click', () => {
   cardValidateForm.removeError();
@@ -121,44 +168,19 @@ addCardButton.addEventListener('click', () => {
   newCardFormPopup.open();
 });
 
+// навешиваем слушатель на кнопку редактирования аватара
+buttonEditAvatar.addEventListener('click', () => {
+  avatarValidateForm.removeError();
+  avatarValidateForm.submitButtonInactivate();
+  userAvatarFormPopup.open();
+});
+
+userProfileFormPopup.setEventListeners(); // навешиваем слушатели закрытия попапа
+imagePopup.setEventListeners(); // навешиваем слушатели закрытия попапа
 newCardFormPopup.setEventListeners(); // навешиваем слушатели закрытия попапа
+userAvatarFormPopup.setEventListeners(); // навешиваем слушатели закрытия попапа
+confirmRemoveCardPopup.setEventListeners(); // навешиваем слушатели закрытия попапа
 
-////////////////////////////////////////////////////////////////////////////////////
-
-const imagePopup = new PopupWithImage(configPopup.imagePopup); // создаём экземпляр попапа для изображений
-  imagePopup.setEventListeners();
-
-////////////////////////////////////////////////////////////////////////////////////
-
-const createNewCard = (data) => { // функция создания карточки
-  const newCard = new Card({
-    data,
-    handleCardClick: (image) => {
-      imagePopup.open(image);
-    },
-    handleRemoveCardClick: (card) => {
-      confirmRemoveCardPopup.open();
-      cardToRemove = card;
-     // confirmRemoveCardPopup.handleRemoveSubmit(card);
-
-      //card.remove();
-    }
-  },
-    cardTemplate);
-  return newCard.createCard();
-}
-
-const defaultCardList = new Section({ // создаем массив карточек из списка по умолчанию
-  items: cards,
-  renderer: (item) => {
-    const card = createNewCard(item);
-    defaultCardList.addItem(card);
-  }
-}, gallery);
-
-defaultCardList.renderItems(); // отрисовка карточек из массива defaultCardList
-
-////////////////////////////////////////////////////////////////////////////////////
 avatarValidateForm.enableValidation();
 cardValidateForm.enableValidation();
 profileValidateForm.enableValidation();

@@ -1,56 +1,166 @@
 class Api {
-  constructor(options) {
-    // тело конструктора
+  constructor() {
+    this._address = 'https://mesto.nomoreparties.co/v1/cohort-65';
+    this._authorization = '5fe7123c-7279-49b2-81ff-c2ec486e8681';
   }
 
-  getInitialCards() {
-    // ...
-  }
-
-  getInitialCards() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
-      headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
-      }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+  async getUserInfo() {
+    try {
+      const res = await fetch(`${this._address}/users/me`, {
+        headers: { authorization: this._authorization }
       });
-  }
-
-  getInitialCards() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
-      headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+      if (!res.ok) {
+        return Promise.reject(`Error getUserInfo: ${res.status}`);
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        // если ошибка, отклоняем промис
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      return await res.json();
+    }
+    catch (err) {
+      console.error(`Error getUserInfo: ${err}`)
+    }
   }
 
-  // другие методы работы с API
+  async setUserInfo(data) {
+    try {
+      const res = await fetch(`${this._address}/users/me`, {
+        method: 'PATCH',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          about: data.about
+        })
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error setUserInfo: ${res.status}`);
+      }
+      return await res.json();
+    }
+    catch (err) {
+      console.error(`Error setUserInfo: ${err}`)
+    }
+  }
+
+  // setUserAvatar(link) {
+  //   this._avatar.src = link.avatar;
+  // }
+
+  async setUserAvatar(link) {
+    try {
+      const res = await fetch(`${this._address}/users/me/avatar`, {
+        method: 'PATCH',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          avatar: link.avatar
+        })
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error setUserAvatar: ${res.status}`);
+      }
+      return await res.json();
+    }
+    catch (err) {
+      console.error(`Error setUserAvatar: ${err}`)
+    }
+  }
+
+  async getInitialCards() {
+    try {
+      const res = await fetch(`${this._address}/cards`, {
+        headers: { authorization: this._authorization }
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error getInitialCards: ${res.status}`);
+      }
+      return await res.json();
+      // const json = await res.json();
+      // return json;
+    }
+    catch (err) {
+      console.error(`Error getInitialCards: ${err}`)
+    }
+  }
+
+  async addCard(data) {
+    try {
+      const res = await fetch(`${this._address}/cards`, {
+        method: 'POST',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          link: data.link
+        })
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error addCards: ${res.status}`);
+      }
+      return await res.json();
+      // const json = await res.json();
+      // return json;
+    }
+    catch (err) {
+      console.error(`Error addCards: ${err}`)
+    }
+  }
+
+  async addLike (data) {
+    try {
+      const res = await fetch(`${this._address}/cards/${data._id}/likes`, {
+        method: 'PUT',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        },
+        // body: JSON.stringify({
+        //   name: data.name,
+        //   link: data.link
+        // })
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error addLike: ${res.status}`);
+      }
+      return await res.json();
+      // const json = await res.json();
+      // return json;
+    }
+    catch (err) {
+      console.error(`Error addLike: ${err}`)
+    }
+  }
+
+async removeLike(data) {
+  try {
+    const res = await fetch(`${this._address}/cards/${data._id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      },
+      // body: JSON.stringify({
+      //   name: data.name,
+      //   link: data.link
+      // })
+    });
+    if (!res.ok) {
+      return Promise.reject(`Error addLike: ${res.status}`);
+    }
+    return await res.json();
+    // const json = await res.json();
+    // return json;
+  }
+  catch (err) {
+    console.error(`Error addLike: ${err}`)
+  }
+}
 }
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
-  headers: {
-    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
-    'Content-Type': 'application/json'
-  }
-});
+const api = new Api();
 
-api.getInitialCards()
-  .then((result) => {
-    // обрабатываем результат
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
+export { api };
