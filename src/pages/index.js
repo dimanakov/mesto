@@ -22,7 +22,8 @@ const buttonEditProfile = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 // card
 const cardTemplate = document.querySelector('.card-template');
-let cardToRemove; // переменная для хранения карточки к удалению
+// userId
+let userId; // переменная для хранения id пользователя
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,10 +53,6 @@ const userAvatarFormPopup = new PopupWithForm(  // создаём экземпл
 const confirmRemoveCardPopup = new PopupWithConfirmation(  // создаём экземпляр попапа для удаления карточки
   {
     popup: configPopup.removeCardPopup,
-    // handleClickSubmit: () => {
-    //   cardToRemove.remove();
-    //   confirmRemoveCardPopup.close();
-    // }
   });
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -97,8 +94,6 @@ const newCardFormPopup = new PopupWithForm({ // создаём экземпля�
 const imagePopup = new PopupWithImage(configPopup.imagePopup); // создаём экземпляр попапа для увеличенных изображений
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-let userId;
 
 async function getCards() {
   const cardsList = await api.getInitialCards();
