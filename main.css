@@ -27,9 +27,10 @@
 .elements__heading{color:#000;font-size:24px;font-weight:900;line-height:29.05px}
 .elements__like-button{background-color:transparent;background-image:url(1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;height:19px;width:22px}.elements__like-button:hover{opacity:.5}
 .elements__like-button_active{background-image:url(35948469632d0421d697.svg);opacity:1}
-.elements__remove-item{background-color:transparent;background-image:url(e3c42771bff3aaa52f76.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;height:19px;max-width:18px;position:absolute;right:20px;top:20px;width:100%}.elements__remove-item:hover{opacity:.5}
+.elements__remove-item{background-color:transparent;background-image:url(e3c42771bff3aaa52f76.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;display:none;height:19px;max-width:18px;position:absolute;right:20px;top:20px;width:100%}.elements__remove-item:hover{opacity:.5}
 .elements__like-group{align-items:center;display:flex;flex-direction:column;row-gap:3px}
 .elements__like-count{color:#000;font-size:13px;line-height:15.73px}
+.elements__remove-item_active{display:block}
 .footer{margin-top:66px}@media (max-width:920px){.footer{margin-top:48px}}
 .footer__text{color:#545454}
 .popup{align-items:center;bottom:0;display:flex;justify-content:center;opacity:0;position:fixed;top:0;transition:visibility .2s,opacity .2s linear;visibility:hidden;width:100%}
