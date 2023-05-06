@@ -10,9 +10,9 @@ class Api {
         headers: { authorization: this._authorization }
       });
       if (!res.ok) {
-        return Promise.reject(`Error getUserInfo: ${res.status}`);
+        return Promise.reject(`Error getUserInfo: ${res.status}`)
       }
-      return await res.json();
+      return await res.json()
     }
     catch (err) {
       console.error(`Error getUserInfo: ${err}`)
@@ -33,18 +33,14 @@ class Api {
         })
       });
       if (!res.ok) {
-        return Promise.reject(`Error setUserInfo: ${res.status}`);
+        return Promise.reject(`Error setUserInfo: ${res.status}`)
       }
-      return await res.json();
+      return await res.json()
     }
     catch (err) {
       console.error(`Error setUserInfo: ${err}`)
     }
   }
-
-  // setUserAvatar(link) {
-  //   this._avatar.src = link.avatar;
-  // }
 
   async setUserAvatar(link) {
     try {
@@ -59,9 +55,9 @@ class Api {
         })
       });
       if (!res.ok) {
-        return Promise.reject(`Error setUserAvatar: ${res.status}`);
+        return Promise.reject(`Error setUserAvatar: ${res.status}`)
       }
-      return await res.json();
+      return await res.json()
     }
     catch (err) {
       console.error(`Error setUserAvatar: ${err}`)
@@ -74,11 +70,9 @@ class Api {
         headers: { authorization: this._authorization }
       });
       if (!res.ok) {
-        return Promise.reject(`Error getInitialCards: ${res.status}`);
+        return Promise.reject(`Error getInitialCards: ${res.status}`)
       }
-      return await res.json();
-      // const json = await res.json();
-      // return json;
+      return await res.json()
     }
     catch (err) {
       console.error(`Error getInitialCards: ${err}`)
@@ -99,66 +93,71 @@ class Api {
         })
       });
       if (!res.ok) {
-        return Promise.reject(`Error addCards: ${res.status}`);
+        return Promise.reject(`Error addCards: ${res.status}`)
       }
-      return await res.json();
-      // const json = await res.json();
-      // return json;
+      return await res.json()
     }
     catch (err) {
       console.error(`Error addCards: ${err}`)
     }
   }
 
-  async addLike (data) {
+  async addLike(data) {
     try {
       const res = await fetch(`${this._address}/cards/${data._id}/likes`, {
         method: 'PUT',
         headers: {
           authorization: this._authorization,
           'Content-Type': 'application/json'
-        },
-        // body: JSON.stringify({
-        //   name: data.name,
-        //   link: data.link
-        // })
+        }
       });
       if (!res.ok) {
         return Promise.reject(`Error addLike: ${res.status}`);
       }
-      return await res.json();
-      // const json = await res.json();
-      // return json;
+      return await res.json()
     }
     catch (err) {
       console.error(`Error addLike: ${err}`)
     }
   }
 
-async removeLike(data) {
-  try {
-    const res = await fetch(`${this._address}/cards/${data._id}/likes`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
-      // body: JSON.stringify({
-      //   name: data.name,
-      //   link: data.link
-      // })
-    });
-    if (!res.ok) {
-      return Promise.reject(`Error addLike: ${res.status}`);
+  async removeLike(data) {
+    try {
+      const res = await fetch(`${this._address}/cards/${data._id}/likes`, {
+        method: 'DELETE',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error addLike: ${res.status}`);
+      }
+      return await res.json();
     }
-    return await res.json();
-    // const json = await res.json();
-    // return json;
+    catch (err) {
+      console.error(`Error addLike: ${err}`)
+    }
   }
-  catch (err) {
-    console.error(`Error addLike: ${err}`)
+
+  async removeCard(data) {
+    try {
+      const res = await fetch(`${this._address}/cards/${data._id}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: this._authorization,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!res.ok) {
+        return Promise.reject(`Error removeCard: ${res.status}`);
+      }
+      return await res.json();
+    }
+    catch (err) {
+      console.error(`Error removeCard: ${err}`)
+    }
   }
-}
 }
 
 const api = new Api();

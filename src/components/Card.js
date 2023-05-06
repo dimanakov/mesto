@@ -13,10 +13,12 @@ export default class Card {
     this._data = data;
     this._likes = data.likes;
     this._userId = userId;
+    this._ownerId = data.owner._id;
     this._template = cardTemplate;
     this._card = this._template.content.querySelector('.elements__item').cloneNode(true);
     this._handleCardClick = handleCardClick;
     this._handleRemoveCardClick = handleRemoveCardClick;
+    this._remove = this._card.querySelector('.elements__remove-item');
     this._like = this._card.querySelector('.elements__like-button');
     this._likeCount = this._card.querySelector('.elements__like-count');
     this._handleLikeClick = handleLikeClick;
@@ -62,19 +64,25 @@ export default class Card {
     this._likeCount.textContent = count;
   }
 
+_isOwner () {
+  if (this._ownerId === this._userId) {
+    this._remove.classList.add('elements__remove-item_active')
+  }
+}
+
   _setEventRemoveCard = () => {
-    this._remove = this._card.querySelector('.elements__remove-item');
     this._remove.addEventListener('click', () => {
-      this._handleRemoveCardClick(this._card);
+      this._handleRemoveCardClick();
     });
   }
 
   createCard() {
-    this._setEventScaleImage();
     this._card.querySelector('.elements__heading').textContent = this._data.name;
-    this._setEventLike();
     this._isLiked();
     this.like(this._data.likes.length);
+    this._isOwner();
+    this._setEventLike();
+    this._setEventScaleImage();
     this._setEventRemoveCard();
     return this._card
   }

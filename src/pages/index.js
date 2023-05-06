@@ -52,10 +52,10 @@ const userAvatarFormPopup = new PopupWithForm(  // создаём экземпл
 const confirmRemoveCardPopup = new PopupWithConfirmation(  // создаём экземпляр попапа для удаления карточки
   {
     popup: configPopup.removeCardPopup,
-    handleClickSubmit: () => {
-      cardToRemove.remove();
-      confirmRemoveCardPopup.close();
-    }
+    // handleClickSubmit: () => {
+    //   cardToRemove.remove();
+    //   confirmRemoveCardPopup.close();
+    // }
   });
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -125,9 +125,15 @@ const createNewCard = (data) => { // функция создания карто�
     handleCardClick: (image) => {
       imagePopup.open(image);
     },
-    handleRemoveCardClick: (card) => {
+    handleRemoveCardClick: () => {
       confirmRemoveCardPopup.open();
-      cardToRemove = card;
+      confirmRemoveCardPopup.setSubmitAction(() => {
+        (async () => {
+          await api.removeCard(data);
+          getCards();
+          confirmRemoveCardPopup.close();
+        })();
+      });
     },
     handleLikeClick: (card) => {
       (async () => {
@@ -138,7 +144,6 @@ const createNewCard = (data) => { // функция создания карто�
     handleRemoveLikeClick: (card) => {
       (async () => {
         const res = await api.removeLike(card);
-        //console.log(res.likes.length);
         newCard.like(res.likes.length);
       })();
     }
