@@ -39,13 +39,21 @@ export default class Card {
     });
   }
 
+setLike() {
+  this._like.classList.add('elements__like-button_active');
+}
+
+removeLike(){
+  this._like.classList.remove('elements__like-button_active');
+}
+
   _setEventLike = () => {
     this._like.addEventListener('click', () => {
-      if (this._like.classList.toggle('elements__like-button_active')) {
-        this._handleLikeClick(this._data)
+      if (this._like.classList.contains('elements__like-button_active')) {
+        this._handleRemoveLikeClick(this._data)
       }
       else {
-        this._handleRemoveLikeClick(this._data)
+        this._handleLikeClick(this._data)
       }
     });
   }
@@ -54,21 +62,25 @@ export default class Card {
     if (this._likes.some((user) => {
       return this._userId === user._id
     })) {
-      this._like.classList.add('elements__like-button_active')
+      this.setLike();
     } else {
-      this._like.classList.remove('elements__like-button_active')
+      this.removeLike();
     }
+  }
+
+  removeCard() {
+    this._card.remove();
   }
 
   like(count) {
     this._likeCount.textContent = count;
   }
 
-_isOwner () {
-  if (this._ownerId === this._userId) {
-    this._remove.classList.add('elements__remove-item_active')
+  _isOwner() {
+    if (this._ownerId !== this._userId) {
+      this._remove.remove();
+    }
   }
-}
 
   _setEventRemoveCard = () => {
     this._remove.addEventListener('click', () => {

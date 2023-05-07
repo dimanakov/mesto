@@ -36,7 +36,6 @@
 @import url('../blocks/elements/__remove-item/elements__remove-item.css');
 @import url('../blocks/elements/__like-group/elements__like-group.css');
 @import url('../blocks/elements/__like-count/elements__like-count.css');
-@import url('../blocks/elements/__remove-item/_active/elements__remove-item_active.css');
 /* footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
