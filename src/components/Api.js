@@ -1,7 +1,7 @@
 class Api {
-  constructor() {
-    this._address = 'https://mesto.nomoreparties.co/v1/cohort-65';
-    this._authorization = '5fe7123c-7279-49b2-81ff-c2ec486e8681';
+  constructor(address, token) {
+    this._address = address;
+    this._authorization = token;
   }
 
   async getUserInfo() {
@@ -160,6 +160,7 @@ class Api {
   }
 }
 
-const api = new Api();
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-65',
+'5fe7123c-7279-49b2-81ff-c2ec486e8681');
 
 export { api };

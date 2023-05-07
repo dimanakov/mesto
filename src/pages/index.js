@@ -38,12 +38,13 @@ const userInfo = new UserInfo( // создаём класс пользовате
 const userAvatarFormPopup = new PopupWithForm(  // создаём экземпляр попапа для аватара профиля
   {
     popup: configPopup.avatarPopup,
-    handleClickSubmit: (link) => {
+    handleClickSubmit: (link, submitButton) => {
       (async () => {
+        submitButton.textContent = 'Сохранение...'
         await api.setUserAvatar(link);
-        upUserInfoApi();
-        userInfo.setUserAvatar(link);
+        await upUserInfoApi();
         userAvatarFormPopup.close();
+        setTimeout((() => {submitButton.textContent = 'Сохранить'}), 1000);
       })();
     }
   });
@@ -60,11 +61,13 @@ const confirmRemoveCardPopup = new PopupWithConfirmation(  // создаём э�
 const userProfileFormPopup = new PopupWithForm(  // создаём экземпляр попапа для профиля пользователя
   {
     popup: configPopup.profilePopup,
-    handleClickSubmit: (data) => {
+    handleClickSubmit: (data, submitButton) => {
       (async () => {
+        submitButton.textContent = 'Сохранение...'
         await api.setUserInfo(data);
-        upUserInfoApi();
-        userProfileFormPopup.close()
+        await upUserInfoApi();
+        userProfileFormPopup.close();
+        setTimeout((() => { submitButton.textContent = 'Сохранить' }), 1000);
       })();
     }
   });
@@ -80,11 +83,13 @@ const fillProfileInputs = (info) => { // функиця переноса дан�
 
 const newCardFormPopup = new PopupWithForm({ // создаём экземпляр попапа создания новой карточки
   popup: configPopup.cardPopup,
-  handleClickSubmit: (item) => {
+  handleClickSubmit: (item, submitButton) => {
     (async () => {
+      submitButton.textContent = 'Сохранение...'
       await api.addCard(item);
       getCards();
-      newCardFormPopup.close()
+      newCardFormPopup.close();
+      setTimeout((() => { submitButton.textContent = 'Создать' }), 1000);
     })();
   },
 });
